@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class CarController : MonoBehaviour
+using Photon.Pun;
+public class CarController : MonoBehaviourPunCallbacks
 {
     public Rigidbody theRB;
 
@@ -29,6 +29,9 @@ public class CarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!photonView.IsMine)
+            return;
+
         theRB.transform.parent = null;
 
         dragOnGround = theRB.drag;
@@ -38,8 +41,11 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-                speedInput = 0f;
+
+        if (!photonView.IsMine)
+            return;
+
+        speedInput = 0f;
                 if (Input.GetAxis("Vertical") > 0)
                 {
                     speedInput = Input.GetAxis("Vertical") * forwardAccel;
@@ -71,6 +77,9 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!photonView.IsMine)
+            return;
+
         grounded = false;
 
         RaycastHit hit;
