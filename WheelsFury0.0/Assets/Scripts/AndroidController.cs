@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class AndroidController : MonoBehaviour
+public class AndroidController : MonoBehaviourPunCallbacks
 {
     public Rigidbody theRB;
     public Rigidbody carRB;
@@ -38,16 +38,16 @@ public class AndroidController : MonoBehaviour
 
     private void Awake()
     {
-        //if (!photonView.IsMine)
-        //return;
+        if (!photonView.IsMine)
+            return;
         FindObjectOfType<InputHandler>().androidController = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //if (!photonView.IsMine)
-        //return;
+        if (!photonView.IsMine)
+            return;
 
         theRB.transform.parent = null;
         carRB.transform.parent = null;
@@ -60,8 +60,8 @@ public class AndroidController : MonoBehaviour
     void Update()
     {
 
-        //if (!photonView.IsMine)
-        //return;
+        if (!photonView.IsMine)
+            return;
 
         //drift
         /*if (Input.GetAxisRaw("Jump") > 0)
@@ -104,8 +104,8 @@ public class AndroidController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (!photonView.IsMine)
-        //return;
+        if (!photonView.IsMine)
+            return;
 
         grounded = false;
 

@@ -9,6 +9,17 @@ public class InputHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //added this code to allow keyboard input, delete later
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        accButtonPressed = vertical > 0;
+        revButtonPressed = vertical < 0;
+        turnLeftButtonPressed = horizontal < 0;
+        turnRightButtonPressed = horizontal > 0;
+        //end
+
+
         if(androidController!= null)
         {
             if (accButtonPressed) { androidController.Accelerate(); }

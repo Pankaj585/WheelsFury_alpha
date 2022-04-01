@@ -365,9 +365,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3740270399030811342}
-  - component: {fileID: 3900158679565844652}
   - component: {fileID: 3058736947564069690}
   - component: {fileID: 5475200012686602680}
+  - component: {fileID: -6691292380922664647}
   m_Layer: 0
   m_Name: Player 2.0
   m_TagString: Untagged
@@ -394,33 +394,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3900158679565844652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5567424792139624407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 710cfb1dc3f02084e960470bb4cf44b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theRB: {fileID: 8578751389261247644}
-  maxSpeed: 300
-  forwardAccel: 5
-  reverseAccel: 5
-  turnStrength: 720
-  grounded: 0
-  groundRayPoint: {fileID: 2452541419426505387}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
-  groundRayLength: 0.75
-  gravityMod: 10
-  leftFrontWheel: {fileID: 6610794919416179960}
-  rightFrontWheel: {fileID: 2872853666004683324}
-  maxWheelTurn: 25
 --- !u!114 &3058736947564069690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +433,38 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-6691292380922664647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567424792139624407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54eabf7f94a359842a1dba63a14b1de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theRB: {fileID: 0}
+  carRB: {fileID: 0}
+  maxSpeed: 0
+  forwardAccel: 8
+  reverseAccel: 4
+  turnStrength: 180
+  driftTurnStrength: 250
+  grounded: 0
+  groundRayPoint: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  groundRayLength: 0.75
+  gravityMod: 10
+  leftFrontWheel: {fileID: 0}
+  rightFrontWheel: {fileID: 0}
+  maxWheelTurn: 25
+  inputHandler: {fileID: 0}
+  trails: []
+  engineSound: {fileID: 0}
 --- !u!1 &5598846072318313095
 GameObject:
   m_ObjectHideFlags: 0
