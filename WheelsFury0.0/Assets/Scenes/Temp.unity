@@ -1055,7 +1055,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599059944}
-  m_LocalRotation: {x: 0.2005282, y: 0.000000032643204, z: -0.0000000066816, w: 0.9796879}
+  m_LocalRotation: {x: 0.20052823, y: -7.3247005e-16, z: 4.3110507e-16, w: 0.9796879}
   m_LocalPosition: {x: 0, y: -19.16, z: -47.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1406,7 +1406,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641421429}
-  m_LocalRotation: {x: 0.2005282, y: 0.000000032643204, z: -0.0000000066816, w: 0.9796879}
+  m_LocalRotation: {x: 0.20052823, y: -7.3247005e-16, z: 4.3110507e-16, w: 0.9796879}
   m_LocalPosition: {x: 0, y: -19.16, z: -47.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1804,19 +1804,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1738477597984443187, guid: 7fac58e7322d90d4bb10df1d3ab33198, type: 3}
   m_PrefabInstance: {fileID: 1166498505}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &881182978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 881182976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c957133f905d0246bc1c794fac89d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidController: {fileID: 0}
 --- !u!114 &881182982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1834,8 +1821,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 881182978}
-          m_TargetAssemblyTypeName: TurnLeftButton, Assembly-CSharp
+        - m_Target: {fileID: 1606091898}
+          m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
           m_MethodName: TurnLeftButtonDown
           m_Mode: 1
           m_Arguments:
@@ -1850,8 +1837,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 881182978}
-          m_TargetAssemblyTypeName: TurnLeftButton, Assembly-CSharp
+        - m_Target: {fileID: 1606091898}
+          m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
           m_MethodName: TurnLeftButtonUp
           m_Mode: 1
           m_Arguments:
@@ -2247,7 +2234,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2027703989}
+    m_TransformParent: {fileID: 1606091899}
     m_Modifications:
     - target: {fileID: 1697736994918286211, guid: b866ce259c7978c45bf6a307b2374e6d, type: 3}
       propertyPath: m_Sprite
@@ -2307,23 +2294,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697736994918286221, guid: b866ce259c7978c45bf6a307b2374e6d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1697736994918286221, guid: b866ce259c7978c45bf6a307b2374e6d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1697736994918286221, guid: b866ce259c7978c45bf6a307b2374e6d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1697736994918286221, guid: b866ce259c7978c45bf6a307b2374e6d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -681
+      value: -379
       objectReference: {fileID: 0}
     - target: {fileID: 1697736994918286221, guid: b866ce259c7978c45bf6a307b2374e6d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -414
+      value: -244
       objectReference: {fileID: 0}
     - target: {fileID: 1697736994918286221, guid: b866ce259c7978c45bf6a307b2374e6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2341,14 +2328,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeAccelerator
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1697736994918286209, guid: b866ce259c7978c45bf6a307b2374e6d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b866ce259c7978c45bf6a307b2374e6d, type: 3}
 --- !u!1001 &1166498505
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2027703989}
+    m_TransformParent: {fileID: 1606091899}
     m_Modifications:
     - target: {fileID: 1738477597984443184, guid: 7fac58e7322d90d4bb10df1d3ab33198, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2416,23 +2404,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1738477597984443187, guid: 7fac58e7322d90d4bb10df1d3ab33198, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1738477597984443187, guid: 7fac58e7322d90d4bb10df1d3ab33198, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1738477597984443187, guid: 7fac58e7322d90d4bb10df1d3ab33198, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1738477597984443187, guid: 7fac58e7322d90d4bb10df1d3ab33198, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 417
+      value: 177
       objectReference: {fileID: 0}
     - target: {fileID: 1738477597984443187, guid: 7fac58e7322d90d4bb10df1d3ab33198, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -285
+      value: -168
       objectReference: {fileID: 0}
     - target: {fileID: 1738477597984443187, guid: 7fac58e7322d90d4bb10df1d3ab33198, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2643,7 +2631,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2027703989}
+    m_TransformParent: {fileID: 1606091899}
     m_Modifications:
     - target: {fileID: 73619754323051440, guid: a1f31e122e930f241a4a7b3c3d8d8eda, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2703,23 +2691,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 73619754323051441, guid: a1f31e122e930f241a4a7b3c3d8d8eda, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 73619754323051441, guid: a1f31e122e930f241a4a7b3c3d8d8eda, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 73619754323051441, guid: a1f31e122e930f241a4a7b3c3d8d8eda, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 73619754323051441, guid: a1f31e122e930f241a4a7b3c3d8d8eda, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 633
+      value: 362
       objectReference: {fileID: 0}
     - target: {fileID: 73619754323051441, guid: a1f31e122e930f241a4a7b3c3d8d8eda, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -286
+      value: -171
       objectReference: {fileID: 0}
     - target: {fileID: 73619754323051441, guid: a1f31e122e930f241a4a7b3c3d8d8eda, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3033,7 +3021,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2027703989}
+    m_TransformParent: {fileID: 1606091899}
     m_Modifications:
     - target: {fileID: 401794283122701320, guid: f2b3eb38116730c4cb6b5390c017ecce, type: 3}
       propertyPath: m_Name
@@ -3093,23 +3081,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 401794283122701321, guid: f2b3eb38116730c4cb6b5390c017ecce, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 401794283122701321, guid: f2b3eb38116730c4cb6b5390c017ecce, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 401794283122701321, guid: f2b3eb38116730c4cb6b5390c017ecce, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 401794283122701321, guid: f2b3eb38116730c4cb6b5390c017ecce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -681
+      value: -383
       objectReference: {fileID: 0}
     - target: {fileID: 401794283122701321, guid: f2b3eb38116730c4cb6b5390c017ecce, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -245
+      value: -113
       objectReference: {fileID: 0}
     - target: {fileID: 401794283122701321, guid: f2b3eb38116730c4cb6b5390c017ecce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3130,6 +3118,59 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 401794283122701333, guid: f2b3eb38116730c4cb6b5390c017ecce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f2b3eb38116730c4cb6b5390c017ecce, type: 3}
+--- !u!1 &1606091897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1606091899}
+  - component: {fileID: 1606091898}
+  m_Layer: 5
+  m_Name: Buttons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1606091898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606091897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a695ff30e733d741a4f835352627318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidController: {fileID: 0}
+--- !u!224 &1606091899
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606091897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1918247590}
+  - {fileID: 1932604801}
+  - {fileID: 881182977}
+  - {fileID: 1967317430}
+  m_Father: {fileID: 2027703989}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1669158334
 GameObject:
   m_ObjectHideFlags: 0
@@ -3221,7 +3262,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1750386183
 GameObject:
@@ -3630,8 +3671,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1918247592}
-          m_TargetAssemblyTypeName: AcceleratorButton, Assembly-CSharp
+        - m_Target: {fileID: 1606091898}
+          m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
           m_MethodName: AccButtonDown
           m_Mode: 1
           m_Arguments:
@@ -3646,8 +3687,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1918247592}
-          m_TargetAssemblyTypeName: AcceleratorButton, Assembly-CSharp
+        - m_Target: {fileID: 1606091898}
+          m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
           m_MethodName: AccButtonUp
           m_Mode: 1
           m_Arguments:
@@ -3658,19 +3699,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1918247592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918247589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 689b16d75a0bfc9488a9fb09e3179708, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidController: {fileID: 0}
 --- !u!1 &1921022463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3793,8 +3821,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1932604803}
-          m_TargetAssemblyTypeName: ReverseButton, Assembly-CSharp
+        - m_Target: {fileID: 1606091898}
+          m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
           m_MethodName: RevButtonDown
           m_Mode: 1
           m_Arguments:
@@ -3809,8 +3837,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1932604803}
-          m_TargetAssemblyTypeName: ReverseButton, Assembly-CSharp
+        - m_Target: {fileID: 1606091898}
+          m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
           m_MethodName: RevButtonUp
           m_Mode: 1
           m_Arguments:
@@ -3821,19 +3849,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1932604803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932604800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0deacf720e573d9409ed53be80f50af4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidController: {fileID: 0}
 --- !u!1 &1967317429 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 73619754323051442, guid: a1f31e122e930f241a4a7b3c3d8d8eda, type: 3}
@@ -3844,19 +3859,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 73619754323051441, guid: a1f31e122e930f241a4a7b3c3d8d8eda, type: 3}
   m_PrefabInstance: {fileID: 1383826448}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1967317431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967317429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28b7cf977773b7849877b7070265adda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidController: {fileID: 0}
 --- !u!114 &1967317435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3874,8 +3876,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1967317431}
-          m_TargetAssemblyTypeName: TurnRightButton, Assembly-CSharp
+        - m_Target: {fileID: 1606091898}
+          m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
           m_MethodName: TurnRightButtonDown
           m_Mode: 1
           m_Arguments:
@@ -3890,8 +3892,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1967317431}
-          m_TargetAssemblyTypeName: TurnRightButton, Assembly-CSharp
+        - m_Target: {fileID: 1606091898}
+          m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
           m_MethodName: TurnRightButtonUp
           m_Mode: 1
           m_Arguments:
@@ -3966,7 +3968,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2027703985
 GameObject:
@@ -4059,12 +4061,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1918247590}
-  - {fileID: 1932604801}
-  - {fileID: 881182977}
-  - {fileID: 1967317430}
+  - {fileID: 1606091899}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4367,13 +4366,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3316186522048640648, guid: a592bccf993cf7d4f86b2c194c38857e, type: 3}
+      propertyPath: inputHandler
+      value: 
+      objectReference: {fileID: 1606091898}
     - target: {fileID: 3316186522048640695, guid: a592bccf993cf7d4f86b2c194c38857e, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5813616431914877870, guid: a592bccf993cf7d4f86b2c194c38857e, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5813616431914877870, guid: a592bccf993cf7d4f86b2c194c38857e, type: 3}
       propertyPath: m_LocalPosition.x

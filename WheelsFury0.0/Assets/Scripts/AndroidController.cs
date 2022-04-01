@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class AndroidController : MonoBehaviourPunCallbacks
+public class AndroidController : MonoBehaviour
 {
     public Rigidbody theRB;
     public Rigidbody carRB;
@@ -15,7 +15,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
 
     public float turnStrength = 180f;
     public float driftTurnStrength = 250f;
-    private float turnInput;
+    private float turnInput,turn;
 
     [SerializeField] bool grounded;
 
@@ -29,17 +29,25 @@ public class AndroidController : MonoBehaviourPunCallbacks
     public Transform leftFrontWheel, rightFrontWheel;
     public float maxWheelTurn = 25f;
 
+    [SerializeField] InputHandler inputHandler;
     bool accelerating, reversing, turningRight, turningLeft;
 
     public TrailRenderer[] trails;
 
     public AudioSource engineSound;
 
+    private void Awake()
+    {
+        //if (!photonView.IsMine)
+        //return;
+        FindObjectOfType<InputHandler>().androidController = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        if (!photonView.IsMine)
-        return;
+        //if (!photonView.IsMine)
+        //return;
 
         theRB.transform.parent = null;
         carRB.transform.parent = null;
@@ -52,8 +60,8 @@ public class AndroidController : MonoBehaviourPunCallbacks
     void Update()
     {
 
-        if (!photonView.IsMine)
-        return;
+        //if (!photonView.IsMine)
+        //return;
 
         //drift
         /*if (Input.GetAxisRaw("Jump") > 0)
@@ -91,12 +99,13 @@ public class AndroidController : MonoBehaviourPunCallbacks
         {
             engineSound.pitch = 1f + ((theRB.velocity.magnitude / maxSpeed) * 1.5f);
         }
+        print(turnInput);
     }
 
     private void FixedUpdate()
     {
-        if (!photonView.IsMine)
-        return;
+        //if (!photonView.IsMine)
+        //return;
 
         grounded = false;
 
@@ -112,9 +121,18 @@ public class AndroidController : MonoBehaviourPunCallbacks
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 6f * Time.deltaTime);
         }
-        print(speedInput);
+
         if (speedInput != 0) 
         {
+            if (speedInput > 0)
+            {
+                speed = speedInput * forwardAccel * 1000f;
+            }
+            else if (speedInput < 0)
+            {
+                speed = speedInput * reverseAccel * 1000f;
+            }
+
             Turn();
             Move();
         }
@@ -159,7 +177,8 @@ public class AndroidController : MonoBehaviourPunCallbacks
     public void TurnLeft()
     {
         turningLeft = true;
-        if (turnInput > -1) { turnInput -= Time.deltaTime; }
+        if (turnInput > -1) 
+        { turnInput -= (Time.deltaTime); }
     }
 
     public void NotTurningLeft()
@@ -170,8 +189,12 @@ public class AndroidController : MonoBehaviourPunCallbacks
 
     public void TurnRight()
     {
-        turningRight = true;
-        if (turnInput < 1) { turnInput += Time.deltaTime; }
+        if (speedInput == 0) return;
+        if (turnInput < 1) 
+        {
+            turningRight = true;
+            turnInput += (Time.deltaTime); 
+        }
     }
 
     public void NotTurningRight()
