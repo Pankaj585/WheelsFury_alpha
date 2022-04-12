@@ -9,7 +9,7 @@ public class InputHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //added this code to allow keyboard input, delete later
+        /*added this code to allow keyboard input, delete later
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -17,7 +17,7 @@ public class InputHandler : MonoBehaviour
         revButtonPressed = vertical < 0;
         turnLeftButtonPressed = horizontal < 0;
         turnRightButtonPressed = horizontal > 0;
-        //end
+        end*/
 
 
         if(androidController!= null)
@@ -29,10 +29,8 @@ public class InputHandler : MonoBehaviour
             else { androidController.NotReversing(); }
 
             if (turnLeftButtonPressed) { androidController.TurnLeft(); }
-            else { androidController.NotTurningLeft(); }
-
-            if (turnRightButtonPressed) { androidController.TurnRight(); }
-            else { androidController.NotTurningRight(); }
+            else if (turnRightButtonPressed) { androidController.TurnRight(); }
+            else { androidController.TurnNeutral(); }
         }
     }
     public void AccButtonDown()

@@ -15,7 +15,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
 
     public float turnStrength = 180f;
     public float driftTurnStrength = 250f;
-    private float turnInput,turn;
+    private float turnInput;
 
     [SerializeField] bool grounded;
 
@@ -41,6 +41,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
         if (!photonView.IsMine)
             return;
         FindObjectOfType<InputHandler>().androidController = this;
+        FindObjectOfType<WeaponOrb>().player = this.gameObject;
     }
 
     // Start is called before the first frame update
@@ -99,7 +100,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
         {
             engineSound.pitch = 1f + ((theRB.velocity.magnitude / maxSpeed) * 1.5f);
         }
-        print(turnInput);
+        print(speedInput);
     }
 
     private void FixedUpdate()
@@ -178,37 +179,24 @@ public class AndroidController : MonoBehaviourPunCallbacks
     {
         turningLeft = true;
         if (turnInput > -1) 
-        { turnInput -= (Time.deltaTime); }
-    }
-
-    public void NotTurningLeft()
-    {
-        turningLeft = false;
-        TurnNeutral();
+        { turnInput -= (Time.deltaTime * 3f); }
     }
 
     public void TurnRight()
     {
-        if (speedInput == 0) return;
-        if (turnInput < 1) 
-        {
-            turningRight = true;
-            turnInput += (Time.deltaTime); 
-        }
-    }
-
-    public void NotTurningRight()
-    {
-        turningRight = false;
-        TurnNeutral();
+        turningRight = true;
+        if (turnInput > -1)
+        { turnInput -= (Time.deltaTime * 3f); }
     }
 
     public void TurnNeutral()
     {
+        turningRight = false;
+        turningLeft = false;
         if (!turningLeft && !turningRight)
         {
-            if (turnInput > 0f) { turnInput -= Time.deltaTime; }
-            else if (speedInput < 0f) { turnInput += Time.deltaTime; }
+            if (turnInput > 0f) { turnInput -= (4f * Time.deltaTime); }
+            else if (speedInput < 0f) { turnInput += (4f * Time.deltaTime); }
         }
     }
 
