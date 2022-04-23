@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class RocketLauncher : MonoBehaviour
+public class RocketLauncher : MonoBehaviour,IWeaponfire
 {
     [SerializeField] GameObject rocketPrefab;
     [SerializeField] float propulsionForce = 35f;
     [SerializeField] float fireRate = 0.2f;
-    [SerializeField] Text ammoText;
-    [SerializeField] GameObject ammoUI;
-    
+    [SerializeField] public TextMeshProUGUI ammoText;
+    [SerializeField] public GameObject ammoUI;
+
+    WeaponController weaponController;
+
     public int clipSize = 5;
 
     bool canShoot = true;
@@ -19,8 +22,7 @@ public class RocketLauncher : MonoBehaviour
 
     void Start()
     {
-        ammoText = GameObject.Find("Canvas").transform.GetChild(3).transform.GetChild(0).GetComponent<Text>();
-        ammoUI = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+        weaponController = FindObjectOfType<WeaponController>();
 
         clipSize = 5;
         ammoText.text = clipSize.ToString();
@@ -33,6 +35,7 @@ public class RocketLauncher : MonoBehaviour
         if(clipSize <= 0) 
         {
             clipSize = 5;
+            weaponController.EqRocketLauncher(false);
             ammoUI.transform.parent.gameObject.SetActive(false);
             gameObject.SetActive(false); 
         }

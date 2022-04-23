@@ -1,70 +1,126 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class WeaponController :MonoBehaviour
+public class WeaponController : MonoBehaviour
 {
-    public float fireRate = 0.1f;
-    public int clipSize = 100;
-
-    bool canShoot;
-    int _currentAmmoInClip;
-
-    [SerializeField] ParticleSystem tracerParticles;
+    public bool rocketLauncher, machineGun, Shockwave, mine, weaponPicked;
+    [SerializeField] GameObject rl, mg, sw, mi;
+    [SerializeField] public GameObject missileAmmo, machineGunAmmo, shockerAmmo, mineAmmo, equipedWeapon;
     
-    void Start()
+    private void Awake()
     {
-        _currentAmmoInClip = clipSize;
-        canShoot = true;
-        
+        rocketLauncher = false;
+        machineGun = false;
+        Shockwave = false;
+        mine = false;
+        weaponPicked = false;
+
+        rl = transform.Find("RocketLauncher").gameObject;
+        mg = transform.Find("MachineGun").gameObject;
+        sw = transform.Find("Shockwave").gameObject;
+        mi = transform.Find("Mine").gameObject;
+
+    }
+    private void Start()
+    {
+        sw.GetComponent<Shocker>().ammoUI = shockerAmmo;
+        sw.GetComponent<Shocker>().ammoText = shockerAmmo.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+
+        rl.GetComponent<RocketLauncher>().ammoUI = missileAmmo;
+        rl.GetComponent<RocketLauncher>().ammoText = missileAmmo.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+
+        mg.GetComponent<MachineGun>().ammoUI = machineGunAmmo;
+        mg.GetComponent<MachineGun>().ammoText = machineGunAmmo.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+
+        mi.GetComponent<Mine>().ammoUI = mineAmmo;
+        mi.GetComponent<Mine>().ammoText = mineAmmo.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+    }
+    private void Update()
+    {
+        if (rocketLauncher || machineGun || Shockwave || mine) { weaponPicked = true; }
+        else weaponPicked = false;
     }
 
-    void Update()
+    public void EqRocketLauncher(bool eq)
     {
-        if(Input.GetMouseButton(0) && canShoot && _currentAmmoInClip > 0)
+        rocketLauncher = eq;
+    }
+    public void EqMachineGun(bool eq)
+    {
+        machineGun = eq;
+    }
+    public void EqShockwave(bool eq)
+    {
+        Shockwave = eq;
+    }
+    public void EqMine(bool eq)
+    {
+        mine = eq;
+    }
+    public void UnequipWeapons()
+    {
+        if (rl.gameObject.activeSelf)
         {
-            canShoot = false;
-            _currentAmmoInClip--;
-            StartCoroutine(Shoot());
+            rl.GetComponent<RocketLauncher>().clipSize = 5;
+            rl.gameObject.SetActive(false); missileAmmo.SetActive(false);
+            equipedWeapon = null;
         }
-        if(Input.GetMouseButton(0) && _currentAmmoInClip > 0)
+        else if (mg.gameObject.activeSelf)
         {
-            BulletTracers(true);
+            mg.GetComponent<MachineGun>().clipSize = 300;
+            mg.gameObject.SetActive(false); machineGunAmmo.SetActive(false);
+            equipedWeapon = null;
         }
-        else
+        else if (sw.gameObject.activeSelf)
         {
-            BulletTracers(false);
+            sw.GetComponent<Shocker>().clipSize = 6;
+            sw.gameObject.SetActive(false); shockerAmmo.SetActive(false);
+            equipedWeapon = null;
+        }
+        else if (mi.gameObject.activeSelf)
+        {
+            mi.GetComponent<Mine>().clipSize = 4;
+            mi.gameObject.SetActive(false); mineAmmo.SetActive(false);
+            equipedWeapon = null;
         }
     }
-
-    private void BulletTracers(bool isActive)
+    public void equipWeapon(int i)
     {
-        var emmisionModule = tracerParticles.GetComponent<ParticleSystem>().emission;
-        emmisionModule.enabled = isActive;
-    }
-
-    IEnumerator Shoot()
-    {
-        RaycastForEnemy();
-        yield return new WaitForSeconds(fireRate);
-        canShoot = true;
-    }
-    void RaycastForEnemy()
-    {
-        RaycastHit hit;
-        print("shoot");
-        if(Physics.Raycast(transform.parent.position,transform.parent.forward,out hit))
+        if (i == 1)
         {
-            if(hit.transform.tag == "Enemy")
-            {
-                CmdDealDamage(hit.transform.gameObject);
-            }
+            rl.gameObject.SetActive(true);
+            missileAmmo.SetActive(true);
+            EqRocketLauncher(true);
+            equipedWeapon = rl;
+        }
+        else if (i == 2)
+        {
+            mg.gameObject.SetActive(true);
+            machineGunAmmo.SetActive(true);
+            EqMachineGun(true);
+            equipedWeapon = mg;
+        }
+        else if (i == 3)
+        {
+            sw.gameObject.SetActive(true);
+            shockerAmmo.SetActive(true);
+            EqShockwave(true);
+            equipedWeapon = sw;
+        }
+        else if (i == 4)
+        {
+            mi.gameObject.SetActive(true);
+            mineAmmo.SetActive(true);
+            EqMine(true);
+            equipedWeapon = mi;
         }
     }
-
-    void CmdDealDamage(GameObject obj)
+    public void FireWeapon()
     {
-        
+        if(equipedWeapon == null) { return; }
+        equipedWeapon.GetComponent<IWeaponfire>().Fire();
     }
 }

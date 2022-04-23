@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9207390195969608480}
   - component: {fileID: 6842945873165908654}
   - component: {fileID: 7314564528101928436}
+  - component: {fileID: 7159078794914594267}
   m_Layer: 0
   m_Name: Weapon orb
   m_TagString: Untagged
@@ -90,8 +91,27 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2455543661143591176}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7159078794914594267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455543661143591176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d44433036812f49aa63df846ea10ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  shocker: {fileID: 0}
+  missile: {fileID: 0}
+  machineGun: {fileID: 0}
+  mine: {fileID: 0}
+  weaponPicked: 0
+  weaponOrbSpawner: {fileID: 0}

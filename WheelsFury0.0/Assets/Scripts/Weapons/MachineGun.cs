@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class MachineGun : MonoBehaviour
+public class MachineGun : MonoBehaviour,IWeaponfire
 {
     [SerializeField] GameObject bulletTracers;
     [SerializeField] GameObject muzzleFlash;
 
     public float clipSize = 100;
-    [SerializeField] Text ammoText;
-    [SerializeField] GameObject ammoUI;
+    [SerializeField] public TextMeshProUGUI ammoText;
+    [SerializeField] public GameObject ammoUI;
+
+    WeaponController weaponController;
 
     bool shooting = false;
 
@@ -18,11 +21,9 @@ public class MachineGun : MonoBehaviour
 
     void Start()
     {
-        ammoText = GameObject.Find("Canvas").transform.GetChild(3).transform.GetChild(0).GetComponent<Text>();
-        ammoUI = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+        weaponController = FindObjectOfType<WeaponController>();
 
         clipSize = 300;
-
         ammoText.text = (Mathf.FloorToInt(clipSize - 200).ToString());
     }
 
@@ -31,6 +32,7 @@ public class MachineGun : MonoBehaviour
         ammoText.text = (Mathf.FloorToInt(clipSize - 200).ToString());
         if ((clipSize - 200) <= 0)
         {
+            weaponController.EqMachineGun(false);
             ammoUI.transform.parent.gameObject.SetActive(false);
             gameObject.SetActive(false);
             shooting = false;
@@ -46,7 +48,6 @@ public class MachineGun : MonoBehaviour
     {
         if (gameObject.activeInHierarchy)
         {
-            if (bulletTracers == null) return;
             shooting = true;
             var emmissionModule = bulletTracers.gameObject.GetComponent<ParticleSystem>().emission;
             emmissionModule.enabled = true;
@@ -58,7 +59,6 @@ public class MachineGun : MonoBehaviour
     {
         if (gameObject.activeInHierarchy)
         {
-            if (bulletTracers == null) return;
             shooting = false;
             var emmissionModule = bulletTracers.gameObject.GetComponent<ParticleSystem>().emission;
             emmissionModule.enabled = false;

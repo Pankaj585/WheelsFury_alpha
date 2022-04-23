@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponOrbSpawner : MonoBehaviour
 {
+    public GameObject player;
+
     [SerializeField] GameObject weaponOrb;
     [SerializeField] float cooldownTime = 8f;
 
@@ -17,6 +19,7 @@ public class WeaponOrbSpawner : MonoBehaviour
 
     void Start()
     {
+        player = FindObjectOfType<AndroidController>().gameObject;
         var weaponUp = Instantiate(weaponOrb, transform.position, Quaternion.identity);
         weaponUp.transform.parent = transform;
     }

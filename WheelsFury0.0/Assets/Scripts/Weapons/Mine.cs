@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class Mine : MonoBehaviour
+public class Mine : MonoBehaviour,IWeaponfire
 {
     [SerializeField] GameObject minePrefab;
 
     [SerializeField] float fireRate = 0.2f;
     public int clipSize = 4;
-    [SerializeField] Text ammoText;
-    [SerializeField] GameObject ammoUI;
+    [SerializeField] public TextMeshProUGUI ammoText;
+    [SerializeField] public GameObject ammoUI;
+
+    WeaponController weaponController;
+
     bool canShoot = true;
 
     void Start()
     {
-        ammoText = GameObject.Find("Canvas").transform.GetChild(3).transform.GetChild(0).GetComponent<Text>();
-        ammoUI = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+        weaponController = FindObjectOfType<WeaponController>();
 
         clipSize = 4;
         ammoText.text = clipSize.ToString();
@@ -27,6 +30,7 @@ public class Mine : MonoBehaviour
         ammoText.text = clipSize.ToString();
         if (clipSize <= 0)
         {
+            weaponController.EqMine(false);
             ammoUI.transform.parent.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
@@ -42,7 +46,7 @@ public class Mine : MonoBehaviour
         canShoot = true;
     }
 
-    public void SpawnMine()
+    public void Fire()
     {
         if (gameObject.activeInHierarchy)
         {

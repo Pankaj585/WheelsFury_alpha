@@ -41,7 +41,6 @@ public class AndroidController : MonoBehaviourPunCallbacks
         if (!photonView.IsMine)
             return;
         FindObjectOfType<InputHandler>().androidController = this;
-        FindObjectOfType<WeaponOrb>().player = this.gameObject;
     }
 
     // Start is called before the first frame update
@@ -62,7 +61,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
     {
 
         if (!photonView.IsMine)
-            return;
+           return;
 
         //drift
         /*if (Input.GetAxisRaw("Jump") > 0)
@@ -100,7 +99,6 @@ public class AndroidController : MonoBehaviourPunCallbacks
         {
             engineSound.pitch = 1f + ((theRB.velocity.magnitude / maxSpeed) * 1.5f);
         }
-        print(speedInput);
     }
 
     private void FixedUpdate()

@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class Shocker : MonoBehaviour
+public class Shocker : MonoBehaviour,IWeaponfire
 {
     [SerializeField] GameObject upperWave;
     [SerializeField] GameObject bottomWave;
 
     [SerializeField] float fireRate = 0.5f;
     public int clipSize = 6;
-    [SerializeField]  Text ammoText;
-    [SerializeField] GameObject ammoUI;
+    [SerializeField] public TextMeshProUGUI ammoText;
+    [SerializeField] public GameObject ammoUI;
+
+    WeaponController weaponController;
 
     bool canShoot = true;
 
@@ -19,8 +22,8 @@ public class Shocker : MonoBehaviour
 
     void Start()
     {
-        ammoText = GameObject.Find("Canvas").transform.GetChild(3).transform.GetChild(0).GetComponent<Text>();
-        ammoUI = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+        weaponController = FindObjectOfType<WeaponController>();
+
 
         clipSize = 6;
         ammoText.text = clipSize.ToString();
@@ -32,6 +35,7 @@ public class Shocker : MonoBehaviour
         ammoText.text = (clipSize - 1).ToString();
         if (clipSize <= 1)
         {
+            weaponController.EqShockwave(false);
             ammoUI.transform.parent.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
@@ -43,9 +47,9 @@ public class Shocker : MonoBehaviour
         {
             upperWave.gameObject.SetActive(true);
             bottomWave.gameObject.SetActive(true);
-            weaponSound.Play();
             clipSize--;
             canShoot = false;
+            Invoke("Delay", 0.5f);
             StartCoroutine(WaitBeforeFire());
 
         }
@@ -54,7 +58,7 @@ public class Shocker : MonoBehaviour
     {
         if (gameObject.activeInHierarchy)
         {
-            Invoke("Delay", 0.5f);
+            print("f");
         }
     }
     void Delay()
