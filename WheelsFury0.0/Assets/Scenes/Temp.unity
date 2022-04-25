@@ -387,7 +387,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599059944}
-  m_LocalRotation: {x: 0.2005282, y: 0.00000003264321, z: -0.000000006681602, w: 0.9796879}
+  m_LocalRotation: {x: 0.20052823, y: -7.5492455e-15, z: 1.9485148e-15, w: 0.9796879}
   m_LocalPosition: {x: 0, y: -19.16, z: -47.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -487,7 +487,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641421429}
-  m_LocalRotation: {x: 0.2005282, y: 0.00000003264321, z: -0.000000006681602, w: 0.9796879}
+  m_LocalRotation: {x: 0.20052823, y: -7.5492455e-15, z: 1.9485148e-15, w: 0.9796879}
   m_LocalPosition: {x: 0, y: -19.16, z: -47.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -635,6 +635,53 @@ MonoBehaviour:
   machineGunAmmo: {fileID: 1958940851}
   shockerAmmo: {fileID: 864546702}
   mineAmmo: {fileID: 401330619}
+--- !u!1 &987276903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 987276905}
+  - component: {fileID: 987276904}
+  m_Layer: 0
+  m_Name: ForRefrence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &987276904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987276903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df118434ac498834e8a6b0e927c2b27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missileAmmo: {fileID: 1116147862}
+  machineGunAmmo: {fileID: 1958940851}
+  shockerAmmo: {fileID: 864546702}
+  mineAmmo: {fileID: 401330619}
+--- !u!4 &987276905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987276903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6266861, y: -18.148432, z: -48.004944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1044737028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,15 +2903,15 @@ PrefabInstance:
     - target: {fileID: 1313355961, guid: a592bccf993cf7d4f86b2c194c38857e, type: 3}
       propertyPath: missileAmmo
       value: 
-      objectReference: {fileID: 1116147862}
+      objectReference: {fileID: 0}
     - target: {fileID: 1313355961, guid: a592bccf993cf7d4f86b2c194c38857e, type: 3}
       propertyPath: shockerAmmo
       value: 
-      objectReference: {fileID: 864546702}
+      objectReference: {fileID: 0}
     - target: {fileID: 1313355961, guid: a592bccf993cf7d4f86b2c194c38857e, type: 3}
       propertyPath: machineGunAmmo
       value: 
-      objectReference: {fileID: 1958940851}
+      objectReference: {fileID: 0}
     - target: {fileID: 3316186522048640648, guid: a592bccf993cf7d4f86b2c194c38857e, type: 3}
       propertyPath: inputHandler
       value: 

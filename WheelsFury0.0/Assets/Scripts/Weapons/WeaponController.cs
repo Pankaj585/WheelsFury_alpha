@@ -8,8 +8,8 @@ public class WeaponController : MonoBehaviour
 {
     public bool rocketLauncher, machineGun, Shockwave, mine, weaponPicked;
     [SerializeField] GameObject rl, mg, sw, mi;
-    [SerializeField] public GameObject missileAmmo, machineGunAmmo, shockerAmmo, mineAmmo, equipedWeapon;
-    
+    public GameObject missileAmmo, machineGunAmmo, shockerAmmo, mineAmmo, equipedWeapon;
+
     private void Awake()
     {
         rocketLauncher = false;
@@ -18,14 +18,20 @@ public class WeaponController : MonoBehaviour
         mine = false;
         weaponPicked = false;
 
-        rl = transform.Find("RocketLauncher").gameObject;
-        mg = transform.Find("MachineGun").gameObject;
-        sw = transform.Find("Shockwave").gameObject;
-        mi = transform.Find("Mine").gameObject;
+        rl = transform.GetChild(0).gameObject;
+        mg = transform.GetChild(1).gameObject;
+        sw = transform.GetChild(2).gameObject;
+        mi = transform.GetChild(3).gameObject;
 
     }
     private void Start()
     {
+        var ammoRefrence = FindObjectOfType<AmmoRefrence>();
+        missileAmmo = ammoRefrence.missileAmmo;
+        machineGunAmmo = ammoRefrence.machineGunAmmo;
+        shockerAmmo = ammoRefrence.shockerAmmo;
+        mineAmmo = ammoRefrence.mineAmmo;
+
         sw.GetComponent<Shocker>().ammoUI = shockerAmmo;
         sw.GetComponent<Shocker>().ammoText = shockerAmmo.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
 
