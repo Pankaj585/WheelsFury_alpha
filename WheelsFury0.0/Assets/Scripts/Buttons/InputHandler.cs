@@ -22,6 +22,10 @@ public class InputHandler : MonoBehaviour
     }
     private void Update()
     {
+        //For taking input from keyboard
+        TakeKeyboardInput();
+        //end
+
         if (accButtonPressed) { if (vertical < 1) { vertical += Time.deltaTime; } }
         if (revButtonPressed) { if (vertical > -1) { vertical -= Time.deltaTime; } }
         if (turnLeftButtonPressed) { if (horizontal > -1) { horizontal -= Time.deltaTime * 5f; } }
@@ -84,4 +88,20 @@ public class InputHandler : MonoBehaviour
         if (horizontal > 0f) { horizontal -= Time.deltaTime * 5f; }
         else if (horizontal < 0f) { horizontal += Time.deltaTime * 5f; }
     }
+
+    //For taking input from keyboard
+    void TakeKeyboardInput()
+    {       
+
+        if(Input.GetKeyDown(KeyCode.W)) { AccButtonDown(); }
+        if(Input.GetKeyDown(KeyCode.S)) { RevButtonDown(); }
+        if(Input.GetKeyDown(KeyCode.A)) { TurnLeftButtonDown(); }
+        if(Input.GetKeyDown(KeyCode.D)) { TurnRightButtonDown();  }
+
+        if (Input.GetKeyUp(KeyCode.W)) { AccButtonUp(); }
+        if (Input.GetKeyUp(KeyCode.S)) { RevButtonUp(); }
+        if (Input.GetKeyUp(KeyCode.A)) { TurnLeftButtonUp(); }
+        if (Input.GetKeyUp(KeyCode.D)) { TurnRightButtonUp(); }
+    }
+    //end
 }

@@ -37,8 +37,8 @@ public class AndroidController : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        //if (!photonView.IsMine)
-        //return;
+        if (!photonView.IsMine)
+            return;
         inputHandler = FindObjectOfType<InputHandler>();
         inputHandler.androidController = this;
     }
@@ -46,8 +46,8 @@ public class AndroidController : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        //if (!photonView.IsMine)
-            //return;
+        if (!photonView.IsMine)
+            return;
 
         theRB.transform.parent = null;
         carRB.transform.parent = null;
@@ -60,8 +60,8 @@ public class AndroidController : MonoBehaviourPunCallbacks
     void Update()
     {
 
-        //if (!photonView.IsMine)
-        //return;
+        if (!photonView.IsMine)
+            return;
 
         //drift
         /*if (Input.GetAxisRaw("Jump") > 0)
@@ -91,8 +91,8 @@ public class AndroidController : MonoBehaviourPunCallbacks
 
     private void FixedUpdate()
     {
-        //if (!photonView.IsMine)
-            //return;
+        if (!photonView.IsMine)
+            return;
 
         grounded = false;
 

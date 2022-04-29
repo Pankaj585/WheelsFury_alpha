@@ -67,7 +67,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if(PhotonNetwork.PlayerList.Length == 2)
+        if(PhotonNetwork.PlayerList.Length == 4)
         {
             if (PhotonNetwork.IsMasterClient)
             {
