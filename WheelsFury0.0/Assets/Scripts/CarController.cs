@@ -32,7 +32,6 @@ public class CarController : MonoBehaviourPunCallbacks
 
     public AudioSource engineSound;
 
-    // Start is called before the first frame update
     void Start()
     {
         //if (!photonView.IsMine)
@@ -45,7 +44,6 @@ public class CarController : MonoBehaviourPunCallbacks
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 

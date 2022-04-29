@@ -11,7 +11,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
     public float maxSpeed;
 
     public float forwardAccel = 8f, reverseAccel = 4f;
-    private float speedInput, speed;
+    private float speedInput;
 
     public float turnStrength = 180f;
     public float driftTurnStrength = 250f;
@@ -30,7 +30,6 @@ public class AndroidController : MonoBehaviourPunCallbacks
     public float maxWheelTurn = 25f;
 
     [SerializeField] InputHandler inputHandler;
-    bool accelerating, reversing, turningRight, turningLeft;
 
     public TrailRenderer[] trails;
 
@@ -39,8 +38,9 @@ public class AndroidController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         //if (!photonView.IsMine)
-            //return;
-        FindObjectOfType<InputHandler>().androidController = this;
+        //return;
+        inputHandler = FindObjectOfType<InputHandler>();
+        inputHandler.androidController = this;
     }
 
     // Start is called before the first frame update
@@ -61,7 +61,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
     {
 
         //if (!photonView.IsMine)
-           //return;
+        //return;
 
         //drift
         /*if (Input.GetAxisRaw("Jump") > 0)
@@ -82,18 +82,6 @@ public class AndroidController : MonoBehaviourPunCallbacks
                 trail.emitting = false;
             }
         }*/
-
-        if (speedInput > 0)
-        {
-            speed = speedInput * forwardAccel * 1000f;
-        }
-        else if (speedInput < 0)
-        {
-            speed = speedInput * reverseAccel * 1000f;
-        }
-
-        //turning the wheels
-
 
         if (engineSound != null)
         {
@@ -121,33 +109,26 @@ public class AndroidController : MonoBehaviourPunCallbacks
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 6f * Time.deltaTime);
         }
 
-        if (speedInput != 0) 
-        {
-            if (speedInput > 0)
-            {
-                speed = speedInput * forwardAccel * 1000f;
-            }
-            else if (speedInput < 0)
-            {
-                speed = speedInput * reverseAccel * 1000f;
-            }
-
-            Turn();
-            Move();
-        }
-
-        transform.position = theRB.position;
-
-        carRB.MoveRotation(transform.rotation);
+        Turn(inputHandler.horizontal);
+        Move(inputHandler.vertical);
     }
 
-    private void Move()
+    private void Move(float input)
     {
+        if (input > 0)
+        {
+            speedInput = input * forwardAccel * 1000f;
+        }
+        else if (input < 0)
+        {
+            speedInput = input * reverseAccel * 1000f;
+        }
+
         if (grounded)
         {
             theRB.drag = dragOnGround;
 
-            theRB.AddForce(transform.forward * speed);
+            theRB.AddForce(transform.forward * speedInput);
         }
         else
         {
@@ -160,80 +141,21 @@ public class AndroidController : MonoBehaviourPunCallbacks
         {
             theRB.velocity = theRB.velocity.normalized * maxSpeed;
         }
-        if (grounded && speedInput != 0)
-        {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Mathf.Sign(speedInput) * (theRB.velocity.magnitude / maxSpeed), 0f));
-        }
+
+        transform.position = theRB.position;
     }
 
-    private void Turn()
+    private void Turn(float turnInput)
     {
         
         leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) - 180, leftFrontWheel.localRotation.eulerAngles.z);
         rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn), rightFrontWheel.localRotation.eulerAngles.z);
-    }
-
-    public void TurnLeft()
-    {
-        turningLeft = true;
-        if (turnInput > -1) 
-        { turnInput -= (Time.deltaTime * 3f); }
-    }
-
-    public void TurnRight()
-    {
-        turningRight = true;
-        if (turnInput > -1)
-        { turnInput -= (Time.deltaTime * 3f); }
-    }
-
-    public void TurnNeutral()
-    {
-        turningRight = false;
-        turningLeft = false;
-        if (!turningLeft && !turningRight)
+        
+        if (grounded && speedInput != 0)
         {
-            if (turnInput > 0f) { turnInput -= (4f * Time.deltaTime); }
-            else if (speedInput < 0f) { turnInput += (4f * Time.deltaTime); }
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Mathf.Sign(speedInput) * (theRB.velocity.magnitude / maxSpeed), 0f));
         }
-    }
 
-    public void Accelerate()
-    {
-        if (speedInput <= 1)
-        {
-            accelerating = true;
-            speedInput += Time.deltaTime;
-        }
-    }
-
-    public void NotAccelerating()
-    {
-        accelerating = false;
-        Neutral();
-    }
-
-    public void Neutral()
-    {
-        if(!accelerating && !reversing)
-        {
-            if (speedInput > 0f) { speedInput -= Time.deltaTime; }
-            else if (speedInput < 0f) { speedInput += Time.deltaTime; }
-        }
-    }
-
-    public void Reverse()
-    {
-        if (speedInput >= -1)
-        {
-            reversing = true;
-            speedInput -= Time.deltaTime;
-        }
-    }
-
-    public void NotReversing()
-    {
-        reversing = false;
-        Neutral();
+        carRB.MoveRotation(transform.rotation);
     }
 }
