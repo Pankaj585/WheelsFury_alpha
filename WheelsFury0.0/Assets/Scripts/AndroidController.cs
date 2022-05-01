@@ -64,7 +64,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
             return;
 
         //drift
-        /*if (Input.GetAxisRaw("Jump") > 0)
+        if (inputHandler.drift)
         {
             turnStrength = driftTurnStrength;
 
@@ -81,7 +81,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
             {
                 trail.emitting = false;
             }
-        }*/
+        }
 
         if (engineSound != null)
         {

@@ -7,6 +7,7 @@ public class InputHandler : MonoBehaviour
     public AndroidController androidController;
     public float vertical, horizontal;
     [SerializeField] bool accButtonPressed, turnLeftButtonPressed, revButtonPressed, turnRightButtonPressed;
+    public bool drift;
 
     private void FixedUpdate()
     {
@@ -87,6 +88,15 @@ public class InputHandler : MonoBehaviour
         //Mathf.Lerp(input, 0f, 1f);
         if (horizontal > 0f) { horizontal -= Time.deltaTime * 5f; }
         else if (horizontal < 0f) { horizontal += Time.deltaTime * 5f; }
+    }
+
+    public void Drift()
+    {
+        drift = true;
+    }
+    public void CancelDrift()
+    {
+        drift = false;
     }
 
     //For taking input from keyboard
