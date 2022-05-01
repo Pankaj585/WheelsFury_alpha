@@ -7,7 +7,8 @@ using Photon.Realtime;
 public class Launcher : MonoBehaviourPunCallbacks
 {
     MainMenuUIHandler UIHandler;
-
+    [Range(2,4)]
+    [SerializeField] int maxPlayers;
     private void Awake()
     {
         UIHandler = FindObjectOfType<MainMenuUIHandler>();
@@ -67,7 +68,9 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if(PhotonNetwork.PlayerList.Length == 4)
+        int maxPlayers = Mathf.Clamp(this.maxPlayers, 2, this.maxPlayers);
+
+        if(PhotonNetwork.PlayerList.Length == maxPlayers)
         {
             if (PhotonNetwork.IsMasterClient)
             {
