@@ -51,9 +51,8 @@ public class AndroidController : MonoBehaviourPunCallbacks
 
         theRB.transform.parent = null;
         carRB.transform.parent = null;
-
+        
         dragOnGround = theRB.drag;
-
     }
 
     // Update is called once per frame
@@ -64,14 +63,13 @@ public class AndroidController : MonoBehaviourPunCallbacks
             return;
 
         //drift
-        if (inputHandler.drift)
+        if (inputHandler.drift && grounded)
         {
             turnStrength = driftTurnStrength;
 
             foreach (var trail in trails)
             {
                 trail.emitting = true;
-                print("drift");
             }
         }
         else

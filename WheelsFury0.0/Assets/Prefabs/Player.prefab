@@ -5485,7 +5485,6 @@ Transform:
   - {fileID: 4942819869049066332}
   - {fileID: 4105105550520939928}
   - {fileID: 537057493914143457}
-  - {fileID: 5300686673026152581}
   - {fileID: 5300686671897521569}
   m_Father: {fileID: 5813616431914877870}
   m_RootOrder: 0
@@ -10382,6 +10381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5813616431914877870}
+  - component: {fileID: 1998306706557260477}
   - component: {fileID: 3316186522048640648}
   - component: {fileID: 5300686672173879726}
   m_Layer: 0
@@ -10411,6 +10411,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1998306706557260477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3316186522048640695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710cfb1dc3f02084e960470bb4cf44b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theRB: {fileID: 1462501802607177212}
+  carRB: {fileID: 0}
+  maxSpeed: 300
+  forwardAccel: 8
+  reverseAccel: 4
+  turnStrength: 425
+  driftTurnStrength: 720
+  grounded: 0
+  groundRayPoint: {fileID: 4706028681562405835}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
+  groundRayLength: 0.75
+  gravityMod: 10
+  leftFrontWheel: {fileID: 4105105550520939928}
+  rightFrontWheel: {fileID: 537057493914143457}
+  maxWheelTurn: 25
+  trails: []
+  engineSound: {fileID: 0}
 --- !u!114 &3316186522048640648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10424,7 +10455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theRB: {fileID: 1462501802607177212}
-  carRB: {fileID: 5300686673026152587}
+  carRB: {fileID: 0}
   maxSpeed: 300
   forwardAccel: 8
   reverseAccel: 3
@@ -10959,7 +10990,7 @@ Transform:
   - {fileID: 5300686672317532210}
   - {fileID: 5300686673272265851}
   m_Father: {fileID: 2426960652525574244}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5300686672317532621
 GameObject:
@@ -11217,83 +11248,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &5300686673026152580
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5300686673026152581}
-  - component: {fileID: 5300686673026152584}
-  - component: {fileID: 5300686673026152587}
-  - component: {fileID: 5300686673026152586}
-  m_Layer: 7
-  m_Name: CarCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5300686673026152581
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5300686673026152580}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2426960652525574244}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5300686673026152584
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5300686673026152580}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.8091774, y: 1.7242737, z: 7.700365}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &5300686673026152587
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5300686673026152580}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 3
---- !u!138 &5300686673026152586
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5300686673026152580}
-  m_ConnectedBody: {fileID: 1462501802607177212}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &5300686673264599732
 GameObject:
   m_ObjectHideFlags: 0

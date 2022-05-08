@@ -92,7 +92,10 @@ public class InputHandler : MonoBehaviour
 
     public void Drift()
     {
-        drift = true;
+        if(turnLeftButtonPressed || turnRightButtonPressed)
+        {
+            drift = true;
+        }
     }
     public void CancelDrift()
     {
