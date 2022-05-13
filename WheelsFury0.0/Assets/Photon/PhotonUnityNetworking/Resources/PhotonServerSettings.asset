@@ -39,6 +39,8 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - SyncOrbs
+  - HandleRequest
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
