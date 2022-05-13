@@ -38,7 +38,13 @@ public class AndroidController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         if (!photonView.IsMine)
+        {
+            theRB.transform.gameObject.SetActive(false);
+            carRB.transform.gameObject.SetActive(false);
+            transform.GetComponent<BoxCollider>().enabled = true;
             return;
+        }
+            
         inputHandler = FindObjectOfType<InputHandler>();
         inputHandler.androidController = this;
     }
@@ -90,7 +96,9 @@ public class AndroidController : MonoBehaviourPunCallbacks
     private void FixedUpdate()
     {
         if (!photonView.IsMine)
+        {
             return;
+        }
 
         grounded = false;
 

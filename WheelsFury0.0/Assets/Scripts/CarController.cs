@@ -5,7 +5,6 @@ using Photon.Pun;
 public class CarController : MonoBehaviourPunCallbacks
 {
     public Rigidbody theRB;
-    public Rigidbody carRB;
 
     public float maxSpeed;
 
@@ -38,7 +37,6 @@ public class CarController : MonoBehaviourPunCallbacks
            // return;
 
         theRB.transform.parent = null;
-        carRB.transform.parent = null;
 
         dragOnGround = theRB.drag;
 
@@ -135,7 +133,6 @@ public class CarController : MonoBehaviourPunCallbacks
        
         transform.position = theRB.position;
 
-        carRB.MoveRotation(transform.rotation);
     }
 }
 
