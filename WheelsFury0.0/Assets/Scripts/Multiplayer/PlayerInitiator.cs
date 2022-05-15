@@ -10,6 +10,7 @@ public class PlayerInitiator : MonoBehaviourPunCallbacks
     [SerializeField] List<Transform> spawnPoints;
 
     [HideInInspector] public GameObject localPlayerObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +26,12 @@ public class PlayerInitiator : MonoBehaviourPunCallbacks
             {
                 localPlayerObject = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoints[localPlayerNumber].position, spawnPoints[localPlayerNumber].rotation);
                 localPlayerObject.GetComponentInChildren<PlayerNetworkManager>().SetCamera(true);
+                localPlayerObject.GetComponent<PlayerID>().SetID(localPlayerNumber);
                 break;
             }
 
         }
 
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    }   
 }

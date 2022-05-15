@@ -7,7 +7,6 @@ public class AndroidController : MonoBehaviourPunCallbacks
 {
     public Rigidbody theRB;
     public Rigidbody carRB;
-
     public float maxSpeed;
 
     public float forwardAccel = 8f, reverseAccel = 4f;
@@ -41,7 +40,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
         {
             theRB.transform.gameObject.SetActive(false);
             carRB.transform.gameObject.SetActive(false);
-            transform.GetComponent<BoxCollider>().enabled = true;
+            transform.GetComponent<BoxCollider>().enabled = true;            
             return;
         }
             
@@ -162,6 +161,6 @@ public class AndroidController : MonoBehaviourPunCallbacks
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Mathf.Sign(speedInput) * (theRB.velocity.magnitude / maxSpeed), 0f));
         }
 
-        carRB.MoveRotation(transform.rotation);
+       carRB.MoveRotation(transform.rotation);
     }
 }

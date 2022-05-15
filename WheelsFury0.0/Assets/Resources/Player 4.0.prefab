@@ -606,6 +606,7 @@ GameObject:
   - component: {fileID: 2206245797423681947}
   - component: {fileID: 5452700975820383887}
   - component: {fileID: 8407866125274771347}
+  - component: {fileID: 4607889429758236710}
   m_Layer: 7
   m_Name: CarCollider (1)
   m_TagString: Untagged
@@ -671,6 +672,19 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4607889429758236710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3695384392696244874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17c88b7439c3604280f51dd19ac83df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRoot: {fileID: 7092365355468339481}
 --- !u!1 &3876874370490706051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1115,7 @@ GameObject:
   - component: {fileID: 7265857096383686518}
   - component: {fileID: 1876360757256491520}
   - component: {fileID: 6014008775941819653}
+  - component: {fileID: 504668937615987167}
   m_Layer: 0
   m_Name: Player 4.0
   m_TagString: Untagged
@@ -1323,6 +1338,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d08af07c1fb50ae4c9c89108e0cdc06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponInfos: []
+--- !u!114 &504668937615987167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092365355468339481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38bf0ebc8fe6b74abb53dc3f03896f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7105918498874496073
