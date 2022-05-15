@@ -9,11 +9,18 @@ public class ItemHandler : MonoBehaviour
     PlayerID playerID;
     [SerializeField] WeaponInfo[] weaponInfos;
     PhotonView pv;
+    GameHandler gameHandler;
+    [Header("Weapon GFX")]
+    [SerializeField] GameObject rocketLauncherGFX;
+    [SerializeField] GameObject machineGunGFX;
+    [SerializeField] GameObject mineGFX;
+    [SerializeField] GameObject shockerGFX;
     private void Awake()
     {
         orbSpawner = FindObjectOfType<OrbSpawner>();
         playerID = transform.root.GetComponent<PlayerID>();
         pv = GetComponent<PhotonView>();
+        gameHandler = FindObjectOfType<GameHandler>();
     }
     // Start is called before the first frame update
     void Start()
@@ -34,12 +41,18 @@ public class ItemHandler : MonoBehaviour
     }
 
     public void EquipItem(WeaponInfo weaponInfo)
-    {
-        this.weaponInfo = weaponInfo;
-        Debug.Log("Equiped item   " + this.weaponInfo.itemName);
+    {        
+        pv.RPC("SyncEquippedWeapon", RpcTarget.All, weaponInfo.itemIndex);                 
+    }
 
-        if(pv.IsMine)
-            pv.RPC("SyncEquippedWeapon", RpcTarget.Others, weaponInfo.itemIndex);
+    void HandleWeaponEquip(WeaponInfo info)
+    {
+        this.weaponInfo = info;
+        SetWeaponGFX();
+        if (pv.IsMine)
+        {
+            gameHandler.SetWeapon(this.weaponInfo);
+        }
     }
 
     [PunRPC]
@@ -49,8 +62,30 @@ public class ItemHandler : MonoBehaviour
         {
             if(info.itemIndex == weaponID)
             {
-                EquipItem(info);
+                HandleWeaponEquip(info);
             }
+        }
+    }
+
+    void SetWeaponGFX()
+    {
+        rocketLauncherGFX.SetActive(false);
+        machineGunGFX.SetActive(false);
+        mineGFX.SetActive(false);
+        shockerGFX.SetActive(false);
+
+        switch (weaponInfo.itemIndex)
+        {
+            case 0: rocketLauncherGFX.SetActive(true);
+                break;
+            case 1: machineGunGFX.SetActive(true);
+                break;
+            case 2: mineGFX.SetActive(true);
+                break;
+            case 3: shockerGFX.SetActive(true);
+                break;
+            default:
+                break;
         }
     }
 }

@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/Guns/New Gun")]
 public class WeaponInfo : ItemInfo
 {
-    
+    public int maxAmmo = 3;
 }

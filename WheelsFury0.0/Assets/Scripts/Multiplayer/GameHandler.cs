@@ -44,4 +44,9 @@ public class GameHandler : MonoBehaviourPunCallbacks
             }
         }
     }
+
+    public void SetWeapon(WeaponInfo info)
+    {
+        UIHandler.SetWeaponUI(info);
+    }
 }

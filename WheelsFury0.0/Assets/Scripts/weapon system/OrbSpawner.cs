@@ -66,7 +66,7 @@ public class OrbSpawner : MonoBehaviour
     public void RequestWeapon(int orbIndex, int playerID)
     {
         Debug.Log("Request received");
-        PV.RPC("HandleRequest", RpcTarget.Others, orbIndex, playerID);
+        PV.RPC("HandleRequest", RpcTarget.All, orbIndex, playerID);
     }
 
     [PunRPC]
