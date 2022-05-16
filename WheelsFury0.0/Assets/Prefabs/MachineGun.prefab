@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2906123785713578803
+--- !u!1 &8287036465497330546
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2530865223723985289}
-  - component: {fileID: 1490879588920337964}
-  - component: {fileID: 3698682759861687014}
-  - component: {fileID: -6320629325021626810}
-  - component: {fileID: 4226967590448976482}
+  - component: {fileID: 8549835917625123463}
+  - component: {fileID: 3291041297016475803}
+  - component: {fileID: 4022890342274633428}
+  - component: {fileID: 8162045520164959644}
+  - component: {fileID: 7505566103499396325}
   m_Layer: 0
-  m_Name: Missile
+  m_Name: MachineGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2530865223723985289
+--- !u!4 &8549835917625123463
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2906123785713578803}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.427, y: 1.313, z: 0.01}
-  m_LocalScale: {x: 0.1, y: 0.53, z: 0.1}
+  m_GameObject: {fileID: 8287036465497330546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &1490879588920337964
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3291041297016475803
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2906123785713578803}
-  m_Mesh: {fileID: 2534964839176971238, guid: bded0a180491edb49afeb0691d035a89, type: 3}
---- !u!23 &3698682759861687014
+  m_GameObject: {fileID: 8287036465497330546}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4022890342274633428
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2906123785713578803}
+  m_GameObject: {fileID: 8287036465497330546}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -592120653741087052, guid: bded0a180491edb49afeb0691d035a89, type: 3}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,34 +83,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &-6320629325021626810
-Rigidbody:
+--- !u!65 &8162045520164959644
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2906123785713578803}
+  m_GameObject: {fileID: 8287036465497330546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &4226967590448976482
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7505566103499396325
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2906123785713578803}
+  m_GameObject: {fileID: 8287036465497330546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f14854a8e56b494a857c536dbf65981, type: 3}
+  m_Script: {fileID: 11500000, guid: db48b10cba9c0a64f8c4ec536b88b51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 0}
   userID: {fileID: 0}
-  ExplosionFxPrefab: {fileID: 0}
+  bulletTracers: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  clipSize: 100
+  ammoText: {fileID: 0}
+  ammoUI: {fileID: 0}
+  gunSound: {fileID: 0}

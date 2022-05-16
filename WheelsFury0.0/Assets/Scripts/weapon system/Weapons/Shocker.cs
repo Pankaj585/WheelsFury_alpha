@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Shocker : MonoBehaviour,IWeaponfire
+public class Shocker : Weapon
 {
     [SerializeField] GameObject upperWave;
     [SerializeField] GameObject bottomWave;
@@ -20,7 +20,7 @@ public class Shocker : MonoBehaviour,IWeaponfire
 
     AudioSource weaponSound;
 
-    void Start()
+   /* void Start()
     {
         weaponController = FindObjectOfType<WeaponController>();
 
@@ -39,7 +39,7 @@ public class Shocker : MonoBehaviour,IWeaponfire
             ammoUI.transform.parent.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
-    }
+    }*/
 
     public void Fire()
     {

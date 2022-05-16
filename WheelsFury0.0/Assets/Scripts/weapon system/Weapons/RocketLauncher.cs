@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class RocketLauncher : MonoBehaviour,IWeaponfire
+public class RocketLauncher : Weapon
 {
     [SerializeField] GameObject rocketPrefab;
     [SerializeField] float propulsionForce = 35f;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MachineGun : MonoBehaviour,IWeaponfire
+public class MachineGun : Weapon
 {
     [SerializeField] GameObject bulletTracers;
     [SerializeField] GameObject muzzleFlash;
@@ -19,7 +19,7 @@ public class MachineGun : MonoBehaviour,IWeaponfire
 
     [SerializeField] AudioSource gunSound;
 
-    void Start()
+   /* void Start()
     {
         weaponController = FindObjectOfType<WeaponController>();
 
@@ -42,7 +42,7 @@ public class MachineGun : MonoBehaviour,IWeaponfire
         {
             clipSize -= Time.deltaTime * 10;
         }
-    }
+    }*/
 
     public void Fire()
     {

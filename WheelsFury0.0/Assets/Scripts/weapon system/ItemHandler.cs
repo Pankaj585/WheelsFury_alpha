@@ -22,17 +22,6 @@ public class ItemHandler : MonoBehaviour
         pv = GetComponent<PhotonView>();
         gameHandler = FindObjectOfType<GameHandler>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void TryEquipItemFromOrb(int orbIndex)
     {
@@ -48,6 +37,7 @@ public class ItemHandler : MonoBehaviour
     void HandleWeaponEquip(WeaponInfo info)
     {
         this.weaponInfo = info;
+        
         SetWeaponGFX();
         if (pv.IsMine)
         {

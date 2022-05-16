@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Mine : MonoBehaviour,IWeaponfire
+public class Mine : Weapon
 {
     [SerializeField] GameObject minePrefab;
 
@@ -17,7 +17,7 @@ public class Mine : MonoBehaviour,IWeaponfire
 
     bool canShoot = true;
 
-    void Start()
+   /* void Start()
     {
         weaponController = FindObjectOfType<WeaponController>();
 
@@ -34,7 +34,7 @@ public class Mine : MonoBehaviour,IWeaponfire
             ammoUI.transform.parent.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
-    }
+    }*/
     public void ThrowMine()
     {
         Instantiate(minePrefab, transform.position, Quaternion.identity);
