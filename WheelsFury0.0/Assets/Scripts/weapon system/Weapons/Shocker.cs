@@ -6,7 +6,19 @@ using TMPro;
 
 public class Shocker : Weapon
 {
-    [SerializeField] GameObject upperWave;
+    public override void Fire()
+    {
+
+    }
+    public override void Impact()
+    {
+
+    }
+    public static void Launch()
+    {
+
+    }
+    /*[SerializeField] GameObject upperWave;
     [SerializeField] GameObject bottomWave;
 
     [SerializeField] float fireRate = 0.5f;
@@ -20,7 +32,7 @@ public class Shocker : Weapon
 
     AudioSource weaponSound;
 
-   /* void Start()
+   *//* void Start()
     {
         weaponController = FindObjectOfType<WeaponController>();
 
@@ -39,7 +51,7 @@ public class Shocker : Weapon
             ammoUI.transform.parent.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
-    }*/
+    }*//*
 
     public void Fire()
     {
@@ -70,5 +82,5 @@ public class Shocker : Weapon
     {
         yield return new WaitForSeconds(fireRate);
         canShoot = true;
-    }
+    }*/
 }

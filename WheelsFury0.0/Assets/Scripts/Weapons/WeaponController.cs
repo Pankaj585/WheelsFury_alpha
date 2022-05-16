@@ -6,7 +6,7 @@ using TMPro;
 
 public class WeaponController : MonoBehaviour
 {
-    public bool rocketLauncher, machineGun, Shockwave, mine, weaponPicked;
+   /* public bool rocketLauncher, machineGun, Shockwave, mine, weaponPicked;
     [SerializeField] GameObject rl, mg, sw, mi;
     public GameObject missileAmmo, machineGunAmmo, shockerAmmo, mineAmmo, equipedWeapon;
 
@@ -128,5 +128,5 @@ public class WeaponController : MonoBehaviour
     {
         if(equipedWeapon == null) { return; }
         equipedWeapon.GetComponent<IWeaponfire>().Fire();
-    }
+    }*/
 }

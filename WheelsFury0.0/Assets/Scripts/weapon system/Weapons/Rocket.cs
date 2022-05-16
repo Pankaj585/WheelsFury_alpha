@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Rocket : Weapon
 {
-    [SerializeField] GameObject ExplosionFxPrefab = null;
-
-    private void OnCollisionEnter(Collision collision)
+    public override void Fire()
     {
-        GameObject explosionFX = Instantiate(ExplosionFxPrefab, collision.contacts[0].point, Quaternion.identity);
-        Destroy(explosionFX, 2f);
-        Destroy(gameObject);
+        
+    }
+    public override void Impact()
+    {
+        
+    }
+
+    public static void Launch()
+    {
+
     }
 }

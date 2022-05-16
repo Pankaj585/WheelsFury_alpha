@@ -6,7 +6,19 @@ using TMPro;
 
 public class Mine : Weapon
 {
-    [SerializeField] GameObject minePrefab;
+    public override void Fire()
+    {
+
+    }
+    public override void Impact()
+    {
+
+    }
+    public static void Launch()
+    {
+
+    }
+    /*[SerializeField] GameObject minePrefab;
 
     [SerializeField] float fireRate = 0.2f;
     public int clipSize = 4;
@@ -17,7 +29,7 @@ public class Mine : Weapon
 
     bool canShoot = true;
 
-   /* void Start()
+   *//* void Start()
     {
         weaponController = FindObjectOfType<WeaponController>();
 
@@ -34,7 +46,7 @@ public class Mine : Weapon
             ammoUI.transform.parent.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
-    }*/
+    }*//*
     public void ThrowMine()
     {
         Instantiate(minePrefab, transform.position, Quaternion.identity);
@@ -54,6 +66,6 @@ public class Mine : Weapon
             clipSize--;
             StartCoroutine(Shoot());
         }
-    }
-    
+    }*/
+
 }

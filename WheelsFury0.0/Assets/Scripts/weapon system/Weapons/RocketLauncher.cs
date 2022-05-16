@@ -6,7 +6,7 @@ using TMPro;
 
 public class RocketLauncher : Weapon
 {
-    [SerializeField] GameObject rocketPrefab;
+    /*[SerializeField] GameObject rocketPrefab;
     [SerializeField] float propulsionForce = 35f;
     [SerializeField] float fireRate = 0.2f;
     [SerializeField] public TextMeshProUGUI ammoText;
@@ -62,5 +62,5 @@ public class RocketLauncher : Weapon
         GameObject rocket = Instantiate(rocketPrefab, launcherTransform.transform.TransformPoint(0f, 0f, 0f), Quaternion.Euler(90f, 0f, 0f));
         rocket.GetComponent<Rigidbody>().AddForce(launcherTransform.forward * propulsionForce, ForceMode.Impulse);
         Destroy(rocket, 5f);
-    }
+    }*/
 }
