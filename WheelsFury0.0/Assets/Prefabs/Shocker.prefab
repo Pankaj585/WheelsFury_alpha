@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8384833982379946344}
   - component: {fileID: 1315051072124363964}
   - component: {fileID: 2082768610245911489}
-  - component: {fileID: 8549881016439066832}
   m_Layer: 0
   m_Name: Shocker
   m_TagString: Untagged
@@ -82,23 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8549881016439066832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5240729059658697619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0e148e69f48ad0489f8424c15a20e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponInfo: {fileID: 0}
-  userID: {fileID: 0}
-  upperWave: {fileID: 0}
-  bottomWave: {fileID: 0}
-  fireRate: 0.5
-  clipSize: 6
-  ammoText: {fileID: 0}
-  ammoUI: {fileID: 0}

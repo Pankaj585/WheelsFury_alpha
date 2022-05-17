@@ -4,20 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Shocker : Weapon
+public class Shocker : MonoBehaviour
 {
-    public override void Fire()
-    {
-
-    }
-    public override void Impact()
-    {
-
-    }
-    public static void Launch()
-    {
-
-    }
     /*[SerializeField] GameObject upperWave;
     [SerializeField] GameObject bottomWave;
 

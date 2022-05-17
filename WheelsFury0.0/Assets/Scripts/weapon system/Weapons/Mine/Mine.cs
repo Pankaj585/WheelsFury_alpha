@@ -4,20 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Mine : Weapon
+public class Mine :MonoBehaviour
 {
-    public override void Fire()
-    {
-
-    }
-    public override void Impact()
-    {
-
-    }
-    public static void Launch()
-    {
-
-    }
     /*[SerializeField] GameObject minePrefab;
 
     [SerializeField] float fireRate = 0.2f;

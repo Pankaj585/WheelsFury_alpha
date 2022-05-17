@@ -8,7 +8,13 @@ public class InputHandler : MonoBehaviour
     public float vertical, horizontal;
     [SerializeField] bool accButtonPressed, turnLeftButtonPressed, revButtonPressed, turnRightButtonPressed;
     public bool drift;
+
+    //firing
     public bool isFiring;
+    public delegate void Button();
+    public event Button FireButtonDownEvent;
+    public event Button FireButtonUpEvent;
+    //end firing
     private void FixedUpdate()
     {
         /*added this code to allow keyboard input, delete later
@@ -105,11 +111,13 @@ public class InputHandler : MonoBehaviour
     public void FireButtonDown()
     {
         isFiring = true;
+        FireButtonDownEvent?.Invoke();
     }
 
     public void FireButtonUp()
     {
         isFiring = false;
+        FireButtonUpEvent?.Invoke();
     }
 
     //For taking input from keyboard

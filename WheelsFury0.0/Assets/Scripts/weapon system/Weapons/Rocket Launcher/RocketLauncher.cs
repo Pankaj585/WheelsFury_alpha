@@ -4,8 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class RocketLauncher : Weapon
+public class RocketLauncher : WeaponLauncher
 {
+    public RocketLauncher(InputHandler inputHandler, ItemHandler itemHandler) : base(inputHandler, itemHandler)
+    {
+       
+    }
     /*[SerializeField] GameObject rocketPrefab;
     [SerializeField] float propulsionForce = 35f;
     [SerializeField] float fireRate = 0.2f;

@@ -4,20 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MachineGun : Weapon
+public class MachineGun : WeaponLauncher
 {
-    public override void Fire()
+    public MachineGun(InputHandler inputHandler, ItemHandler itemHandler) : base(inputHandler, itemHandler)
     {
-
+        
     }
-    public override void Impact()
-    {
 
-    }
-    public static void Launch()
-    {
-
-    }
     /* [SerializeField] GameObject bulletTracers;
      [SerializeField] GameObject muzzleFlash;
 
@@ -77,5 +70,5 @@ public class MachineGun : Weapon
              muzzleFlash.gameObject.SetActive(false);
              gunSound.Stop();
          }
-     }*/
+     }*/   
 }
