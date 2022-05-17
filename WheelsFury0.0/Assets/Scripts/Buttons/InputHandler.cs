@@ -133,6 +133,9 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.S)) { RevButtonUp(); }
         if (Input.GetKeyUp(KeyCode.A)) { TurnLeftButtonUp(); }
         if (Input.GetKeyUp(KeyCode.D)) { TurnRightButtonUp(); }
+
+        if (Input.GetKeyDown(KeyCode.K)) { FireButtonDown(); }
+        if (Input.GetKeyUp(KeyCode.K)) { FireButtonUp(); }
     }
     //end
 }

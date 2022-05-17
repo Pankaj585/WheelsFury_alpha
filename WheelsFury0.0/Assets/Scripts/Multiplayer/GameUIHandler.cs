@@ -46,6 +46,12 @@ public class GameUIHandler : MonoBehaviour
 
     public void SetWeaponUI(WeaponInfo info)
     {
+        if(info == null)
+        {
+            equippedWeaponOverlay.SetActive(false);
+            return;
+        }
+
         if (!equippedWeaponOverlay.activeSelf)
             equippedWeaponOverlay.SetActive(true);
 

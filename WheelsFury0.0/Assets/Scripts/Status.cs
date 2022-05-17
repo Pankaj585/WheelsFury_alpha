@@ -21,6 +21,9 @@ public class Status : MonoBehaviour
 
     public void Damage(int damage)
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
         if (isDead)
             return;
 

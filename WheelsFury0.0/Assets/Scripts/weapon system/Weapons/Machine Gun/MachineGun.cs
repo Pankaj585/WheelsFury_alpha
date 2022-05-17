@@ -6,11 +6,22 @@ using TMPro;
 
 public class MachineGun : WeaponLauncher
 {
-    public MachineGun(InputHandler inputHandler, ItemHandler itemHandler) : base(inputHandler, itemHandler)
+    private void Awake()
     {
-        
+        inputHandler = FindObjectOfType<InputHandler>();
+        itemHandler = transform.root.GetComponent<ItemHandler>();
+        pool = FindObjectOfType<WeaponPool>();
     }
 
+    public override void OnFireButtonDown()
+    {
+
+    }
+
+    public override void OnFireButtonUp()
+    {
+
+    }
     /* [SerializeField] GameObject bulletTracers;
      [SerializeField] GameObject muzzleFlash;
 
@@ -70,5 +81,5 @@ public class MachineGun : WeaponLauncher
              muzzleFlash.gameObject.SetActive(false);
              gunSound.Stop();
          }
-     }*/   
+     }*/
 }

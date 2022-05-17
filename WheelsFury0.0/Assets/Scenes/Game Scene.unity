@@ -1405,7 +1405,7 @@ MonoBehaviour:
   machineGunPoolSize: 4
   shockerPoolSize: 4
   minePoolSize: 20
-  missile: {fileID: 2906123785713578803, guid: 2307fb78d9b463442bee3b62fe30aaa9, type: 3}
+  missile: {fileID: 8257199782465852019, guid: 2307fb78d9b463442bee3b62fe30aaa9, type: 3}
   machineGun: {fileID: 8287036465497330546, guid: 90f0a2d01f657d443b24b815fb42b56b, type: 3}
   shocker: {fileID: 5240729059658697619, guid: 0819655e50ae48b4f916e6f97047ed1a, type: 3}
   mine: {fileID: 2932302324016255219, guid: d9c0fbe2464edcb4fbc40e0da15fa763, type: 3}

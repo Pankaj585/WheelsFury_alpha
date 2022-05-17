@@ -3,13 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using Photon.Pun;
 public class RocketLauncher : WeaponLauncher
 {
-    public RocketLauncher(InputHandler inputHandler, ItemHandler itemHandler) : base(inputHandler, itemHandler)
+    [SerializeField] Transform launchTransform;
+    PhotonView pv;
+    GameHandler gameHandler;
+    private void Awake()
     {
-       
+        inputHandler = FindObjectOfType<InputHandler>();
+        itemHandler = transform.root.GetComponent<ItemHandler>();
+        pool = FindObjectOfType<WeaponPool>();
+        pv = GetComponent<PhotonView>();
+        gameHandler = FindObjectOfType<GameHandler>();
     }
+
+    public override void OnFireButtonDown()
+    {
+        pv.RPC("LaunchRocket", RpcTarget.All);
+    }    
+
+    public override void OnFireButtonUp()
+    {
+        //do nothing
+    }
+
+    [PunRPC]
+    void LaunchRocket()
+    {
+        GameObject rocket = pool.GetMissile();
+        rocket.SetActive(true);
+        rocket.GetComponent<Rocket>().Launch(launchTransform);
+
+        if (pv.IsMine)
+        {
+            gameHandler.UpdateAmmoUI(--itemHandler.currentAmmo);
+        }
+
+        if (itemHandler.currentAmmo <= 0)
+            itemHandler.UnequipWeapon();
+    }
+
+    
     /*[SerializeField] GameObject rocketPrefab;
     [SerializeField] float propulsionForce = 35f;
     [SerializeField] float fireRate = 0.2f;

@@ -49,4 +49,9 @@ public class GameHandler : MonoBehaviourPunCallbacks
     {
         UIHandler.SetWeaponUI(info);
     }
+
+    public void UpdateAmmoUI(int ammo)
+    {
+        UIHandler.UpdateAmmoUI(ammo);
+    }
 }

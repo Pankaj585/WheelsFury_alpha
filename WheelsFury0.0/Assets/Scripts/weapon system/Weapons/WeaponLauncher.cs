@@ -2,22 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponLauncher 
+public class WeaponLauncher : MonoBehaviour
 {
     protected InputHandler inputHandler;
     protected ItemHandler itemHandler;
+    protected WeaponPool pool;
     protected bool isActive;
-
-    public WeaponLauncher(InputHandler inputHandler, ItemHandler itemHandler)
-    {
-        this.inputHandler = inputHandler;
-        this.itemHandler = itemHandler;
-    }
-
+    [SerializeField] protected GameObject weaponGFX;
+    
     public void Activate()
     {
         inputHandler.FireButtonDownEvent += OnFireButtonDown;
         inputHandler.FireButtonUpEvent += OnFireButtonUp;
+        weaponGFX.SetActive(true);
         isActive = true;
     }
 
@@ -28,14 +25,15 @@ public class WeaponLauncher
 
         inputHandler.FireButtonDownEvent -= OnFireButtonDown;
         inputHandler.FireButtonUpEvent -= OnFireButtonUp;
+        weaponGFX.SetActive(false);
         isActive = false;
     }
-    public void OnFireButtonDown()
+    public virtual void OnFireButtonDown()
     {
 
     }
 
-    public void OnFireButtonUp()
+    public virtual void OnFireButtonUp()
     {
 
     }

@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class MineLauncher : WeaponLauncher
 {
-    public MineLauncher(InputHandler inputHandler, ItemHandler itemHandler) : base(inputHandler, itemHandler)
+    private void Awake()
     {
-        
+        inputHandler = FindObjectOfType<InputHandler>();
+        itemHandler = transform.root.GetComponent<ItemHandler>();
+        pool = FindObjectOfType<WeaponPool>();
+    }
+
+    public override void OnFireButtonDown()
+    {
+
+    }
+
+    public override void OnFireButtonUp()
+    {
+
     }
 }

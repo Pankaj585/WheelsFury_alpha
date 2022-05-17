@@ -152,6 +152,8 @@ public class WeaponPool : MonoBehaviour
                 return;
 
             GameObject returnedInstance = currentlyUsedInstances[index];
+            returnedInstance.SetActive(false);
+            returnedInstance.transform.position = Vector3.zero;
             currentlyUnusedInstances.Add(returnedInstance);
             currentlyUsedInstances.Remove(returnedInstance);
         }
