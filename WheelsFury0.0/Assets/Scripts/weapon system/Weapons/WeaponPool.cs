@@ -149,7 +149,11 @@ public class WeaponPool : MonoBehaviour
         {
             int index = currentlyUsedInstances.BinarySearch(instance);
             if (index < 0)
+            {
+                Debug.Log("Missile not recognized");
                 return;
+            }
+                
 
             GameObject returnedInstance = currentlyUsedInstances[index];
             returnedInstance.SetActive(false);

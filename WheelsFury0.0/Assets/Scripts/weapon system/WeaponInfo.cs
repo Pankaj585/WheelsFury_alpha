@@ -6,4 +6,5 @@ using UnityEngine;
 public class WeaponInfo : ItemInfo
 {
     public int maxAmmo = 3;
+    public int damage = 10;
 }

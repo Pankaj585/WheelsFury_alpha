@@ -7,7 +7,6 @@ using Photon.Pun;
 public class RocketLauncher : WeaponLauncher
 {
     [SerializeField] Transform launchTransform;
-    PhotonView pv;
     GameHandler gameHandler;
     private void Awake()
     {
@@ -38,10 +37,11 @@ public class RocketLauncher : WeaponLauncher
         if (pv.IsMine)
         {
             gameHandler.UpdateAmmoUI(--itemHandler.currentAmmo);
+
+            if (itemHandler.currentAmmo <= 0)
+                itemHandler.UnequipWeapon();
         }
 
-        if (itemHandler.currentAmmo <= 0)
-            itemHandler.UnequipWeapon();
     }
 
     

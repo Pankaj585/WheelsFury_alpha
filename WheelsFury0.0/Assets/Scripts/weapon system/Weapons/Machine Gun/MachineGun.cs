@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using Photon.Pun;
 public class MachineGun : WeaponLauncher
 {
     private void Awake()
     {
+        pv = GetComponent<PhotonView>();
         inputHandler = FindObjectOfType<InputHandler>();
         itemHandler = transform.root.GetComponent<ItemHandler>();
         pool = FindObjectOfType<WeaponPool>();

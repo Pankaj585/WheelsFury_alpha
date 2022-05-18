@@ -71,6 +71,12 @@ public class ItemHandler : MonoBehaviour
 
     public void UnequipWeapon()
     {
+        pv.RPC("RPC_UnequipWeapon", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void RPC_UnequipWeapon()
+    {
         currentAmmo = 0;
         weaponLaunchers[weaponInfo.itemIndex].Deactivate();
         weaponInfo = null;

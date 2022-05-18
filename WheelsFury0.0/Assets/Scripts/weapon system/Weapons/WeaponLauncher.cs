@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class WeaponLauncher : MonoBehaviour
 {
     protected InputHandler inputHandler;
@@ -9,11 +9,14 @@ public class WeaponLauncher : MonoBehaviour
     protected WeaponPool pool;
     protected bool isActive;
     [SerializeField] protected GameObject weaponGFX;
-    
+    protected PhotonView pv;
     public void Activate()
     {
-        inputHandler.FireButtonDownEvent += OnFireButtonDown;
-        inputHandler.FireButtonUpEvent += OnFireButtonUp;
+        if (pv.IsMine)
+        {
+            inputHandler.FireButtonDownEvent += OnFireButtonDown;
+            inputHandler.FireButtonUpEvent += OnFireButtonUp;
+        }
         weaponGFX.SetActive(true);
         isActive = true;
     }
@@ -23,8 +26,11 @@ public class WeaponLauncher : MonoBehaviour
         if (!isActive)
             return;
 
-        inputHandler.FireButtonDownEvent -= OnFireButtonDown;
-        inputHandler.FireButtonUpEvent -= OnFireButtonUp;
+        if (pv.IsMine)
+        {
+            inputHandler.FireButtonDownEvent -= OnFireButtonDown;
+            inputHandler.FireButtonUpEvent -= OnFireButtonUp;
+        }
         weaponGFX.SetActive(false);
         isActive = false;
     }
