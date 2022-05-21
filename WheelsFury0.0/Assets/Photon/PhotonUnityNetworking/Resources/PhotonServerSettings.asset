@@ -46,6 +46,9 @@ MonoBehaviour:
   - SyncHealth
   - RPC_UnequipWeapon
   - LaunchRocket
+  - SyncOverNetwork
+  - LaunchMine
+  - RPC_ReturnMine
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

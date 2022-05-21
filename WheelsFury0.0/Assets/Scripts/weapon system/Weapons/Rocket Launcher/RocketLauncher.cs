@@ -12,7 +12,7 @@ public class RocketLauncher : WeaponLauncher
     {
         inputHandler = FindObjectOfType<InputHandler>();
         itemHandler = transform.root.GetComponent<ItemHandler>();
-        pool = FindObjectOfType<WeaponPool>();
+        poolManager = FindObjectOfType<PoolManager>();
         pv = GetComponent<PhotonView>();
         gameHandler = FindObjectOfType<GameHandler>();
     }
@@ -30,18 +30,22 @@ public class RocketLauncher : WeaponLauncher
     [PunRPC]
     void LaunchRocket()
     {
-        GameObject rocket = pool.GetMissile();
-        rocket.SetActive(true);
-        rocket.GetComponent<Rocket>().Launch(launchTransform);
+        PoolInstance instance = poolManager.GetInstance(weaponInfo);
+        instance.instance.SetActive(true);
+        Rocket rocket = instance.instance.GetComponent<Rocket>();
+        rocket.SetPoolInstanceReference(instance);
+        rocket.Launch(launchTransform);
+
+        itemHandler.currentAmmo--;
 
         if (pv.IsMine)
         {
-            gameHandler.UpdateAmmoUI(--itemHandler.currentAmmo);
+            gameHandler.UpdateAmmoUI(itemHandler.currentAmmo);
 
-            if (itemHandler.currentAmmo <= 0)
-                itemHandler.UnequipWeapon();
         }
 
+        if (itemHandler.currentAmmo <= 0)
+            itemHandler.UnequipWeapon();
     }
 
     

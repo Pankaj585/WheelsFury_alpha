@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Shocker : MonoBehaviour
+public class Shocker : Ammo
 {
     /*[SerializeField] GameObject upperWave;
     [SerializeField] GameObject bottomWave;

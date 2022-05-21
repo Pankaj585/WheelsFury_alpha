@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Mine
   itemIndex: 2
+  maxAmmo: 3
+  damage: 10
+  fireRate: 1
+  isContinuousFire: 0
+  hasAmmoPrefab: 1
+  ammoPrefab: {fileID: 2932302324016255219, guid: d9c0fbe2464edcb4fbc40e0da15fa763, type: 3}
+  requiredPoolSize: 15
+  impactEffectPrefab: {fileID: 0}
+  requiredImpactEffectPoolSize: 5

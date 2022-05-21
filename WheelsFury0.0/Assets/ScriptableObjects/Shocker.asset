@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Shocker
   itemIndex: 3
+  maxAmmo: 3
+  damage: 10
+  fireRate: 1
+  isContinuousFire: 0
+  hasAmmoPrefab: 1
+  ammoPrefab: {fileID: 5240729059658697619, guid: 0819655e50ae48b4f916e6f97047ed1a, type: 3}
+  requiredPoolSize: 5
+  impactEffectPrefab: {fileID: 0}
+  requiredImpactEffectPoolSize: 5

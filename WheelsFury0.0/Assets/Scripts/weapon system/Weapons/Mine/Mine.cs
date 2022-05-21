@@ -3,57 +3,75 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-public class Mine :MonoBehaviour
+using Photon.Pun;
+public class Mine : Ammo
 {
-    /*[SerializeField] GameObject minePrefab;
 
-    [SerializeField] float fireRate = 0.2f;
-    public int clipSize = 4;
-    [SerializeField] public TextMeshProUGUI ammoText;
-    [SerializeField] public GameObject ammoUI;
-
-    WeaponController weaponController;
-
-    bool canShoot = true;
-
-   *//* void Start()
+    Rigidbody rb;
+    Timer timer;
+    [SerializeField] Effect detonateEffect;
+    [SerializeField] int mineDisappearTime;
+    PoolManager poolManager;
+    MineLauncher mineLauncher;
+    PoolInstance poolInstance;
+    private void Awake()
     {
-        weaponController = FindObjectOfType<WeaponController>();
-
-        clipSize = 4;
-        ammoText.text = clipSize.ToString();
+        /*rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;*/
+        poolManager = FindObjectOfType<PoolManager>();
+        timer = new Timer(mineDisappearTime);
     }
 
-    void Update()
+    private void Update()
     {
-        ammoText.text = clipSize.ToString();
-        if (clipSize <= 0)
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
+        if (!timer.isTimerRunning)
+            return;
+
+        if (timer.Tick(Time.deltaTime))
         {
-            weaponController.EqMine(false);
-            ammoUI.transform.parent.gameObject.SetActive(false);
-            gameObject.SetActive(false);
+            mineLauncher.ReturnMine(poolInstance);
         }
-    }*//*
-    public void ThrowMine()
-    {
-        Instantiate(minePrefab, transform.position, Quaternion.identity);
-    }
-    IEnumerator Shoot()
-    {
-        ThrowMine();
-        yield return new WaitForSeconds(fireRate);
-        canShoot = true;
     }
 
-    public void Fire()
+    public void Launch(Transform launchTransform)
     {
-        if (gameObject.activeInHierarchy)
+        transform.position = launchTransform.position;
+        transform.forward = launchTransform.forward;
+        if(PhotonNetwork.IsMasterClient)
+            timer.StartTimer();
+    }
+
+    public void SetMineLauncherReference(MineLauncher launcher)
+    {
+        mineLauncher = launcher;
+    }
+
+    public void SetPoolInstanceReference(PoolInstance instance)
+    {
+        poolInstance = instance;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("triggered mine");
+        GameObject player = other.GetComponent<PlayerReference>()?.playerRoot;
+        if (player == null)
+            return;
+        Debug.Log("Player found");
+        PoolInstance instance = poolManager.GetInstance(detonateEffect);
+        instance.instance.transform.position = transform.position;
+        MineImpactEffect effect = instance.instance.GetComponent<MineImpactEffect>();
+        effect.SetPoolInstanceReference(instance);
+        effect.gameObject.SetActive(true);
+        effect.PlayEffect();
+        if (PhotonNetwork.IsMasterClient)
         {
-            canShoot = false;
-            clipSize--;
-            StartCoroutine(Shoot());
+            Debug.Log("damaging player");
+            player.GetComponent<Status>().Damage(weaponInfo.damage);
+            mineLauncher.ReturnMine(poolInstance);
         }
-    }*/
-
+    }
 }

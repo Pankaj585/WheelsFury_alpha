@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516765b38fd9d3646b484876f510fc62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponInfo: {fileID: 11400000, guid: a0335ce85ad36324abcc3a5cd78ecfdc, type: 2}
   weaponGFX: {fileID: 3095897945068613567}
 --- !u!114 &7246372739435269670
 MonoBehaviour:
@@ -594,6 +595,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3799267452869983509}
+  - {fileID: 8456923206310050832}
   m_Father: {fileID: 1229028076430201117}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -609,7 +611,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3db76d9191a4745b4951a7dac08513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponInfo: {fileID: 11400000, guid: db791122d48add840ab4e46a759bb3dd, type: 2}
   weaponGFX: {fileID: 8082469239750411179}
+  launchTransform: {fileID: 8456923206310050832}
 --- !u!114 &5162569583492344238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,6 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db48b10cba9c0a64f8c4ec536b88b51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponInfo: {fileID: 11400000, guid: 18d43b86790f28f45ab64fbae3aeede2, type: 2}
   weaponGFX: {fileID: 5578057540678107694}
 --- !u!114 &6735186134575598629
 MonoBehaviour:
@@ -1557,6 +1562,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5939889166038569180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8456923206310050832}
+  m_Layer: 0
+  m_Name: LaunchTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8456923206310050832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939889166038569180}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.56, z: -6.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2092619941154076274}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6702658170988664837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,6 +1751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05856cee4eeeccf4db2f2f7da36893a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponInfo: {fileID: 11400000, guid: dbc11285622ac2342808f8e14397453c, type: 2}
   weaponGFX: {fileID: 1882764799654124362}
   launchTransform: {fileID: 498706915854815002}
 --- !u!114 &8021136293636671913
@@ -1819,7 +1855,7 @@ GameObject:
   - component: {fileID: 6014008775941819653}
   - component: {fileID: 504668937615987167}
   - component: {fileID: -5423618689159187171}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player 4.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Rocket Launcher
   itemIndex: 0
+  maxAmmo: 3
+  damage: 10
+  fireRate: 1
+  isContinuousFire: 0
+  hasAmmoPrefab: 1
+  ammoPrefab: {fileID: 8257199782465852019, guid: 2307fb78d9b463442bee3b62fe30aaa9, type: 3}
+  requiredPoolSize: 15
+  impactEffectPrefab: {fileID: 3951048160011684979, guid: 6ccead7c0ca8c964585d925bee35e1b5, type: 3}
+  requiredImpactEffectPoolSize: 5

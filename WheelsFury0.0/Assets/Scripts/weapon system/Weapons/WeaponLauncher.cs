@@ -6,7 +6,8 @@ public class WeaponLauncher : MonoBehaviour
 {
     protected InputHandler inputHandler;
     protected ItemHandler itemHandler;
-    protected WeaponPool pool;
+    protected PoolManager poolManager;
+    [SerializeField]protected WeaponInfo weaponInfo;
     protected bool isActive;
     [SerializeField] protected GameObject weaponGFX;
     protected PhotonView pv;

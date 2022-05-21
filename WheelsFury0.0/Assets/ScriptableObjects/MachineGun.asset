@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Machine Gun
   itemIndex: 1
+  maxAmmo: 3
+  damage: 10
+  fireRate: 25
+  isContinuousFire: 1
+  hasAmmoPrefab: 0
+  ammoPrefab: {fileID: 0}
+  requiredPoolSize: 0
+  impactEffectPrefab: {fileID: 0}
+  requiredImpactEffectPoolSize: 5

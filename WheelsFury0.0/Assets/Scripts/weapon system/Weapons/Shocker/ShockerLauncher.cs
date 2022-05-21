@@ -9,7 +9,7 @@ public class ShockerLauncher : WeaponLauncher
         pv = GetComponent<PhotonView>();
         inputHandler = FindObjectOfType<InputHandler>();
         itemHandler = transform.root.GetComponent<ItemHandler>();
-        pool = FindObjectOfType<WeaponPool>();
+        poolManager = FindObjectOfType<PoolManager>();
     }
 
     public override void OnFireButtonDown()
