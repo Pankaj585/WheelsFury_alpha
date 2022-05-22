@@ -290,6 +290,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: a0335ce85ad36324abcc3a5cd78ecfdc, type: 2}
   weaponGFX: {fileID: 3095897945068613567}
+  shockerEffect: {fileID: 3543136945972036179, guid: 652daf6029d8afa479ae2363a08f6794, type: 3}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2176
+  shockerDamageRadius: 5
 --- !u!114 &7246372739435269670
 MonoBehaviour:
   m_ObjectHideFlags: 0

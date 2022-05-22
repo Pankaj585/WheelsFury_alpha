@@ -1366,10 +1366,10 @@ MonoBehaviour:
   weaponInfo:
   - {fileID: 11400000, guid: dbc11285622ac2342808f8e14397453c, type: 2}
   - {fileID: 11400000, guid: db791122d48add840ab4e46a759bb3dd, type: 2}
-  - {fileID: 11400000, guid: a0335ce85ad36324abcc3a5cd78ecfdc, type: 2}
   effects:
   - {fileID: -1280375464778061838, guid: 6ccead7c0ca8c964585d925bee35e1b5, type: 3}
   - {fileID: -2003110254716537728, guid: 16a728e624e4ac342900c2b369a0649c, type: 3}
+  - {fileID: 3543136945972036179, guid: 652daf6029d8afa479ae2363a08f6794, type: 3}
 --- !u!1001 &745942042
 PrefabInstance:
   m_ObjectHideFlags: 0

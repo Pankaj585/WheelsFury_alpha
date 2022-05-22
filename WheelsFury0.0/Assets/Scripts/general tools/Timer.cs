@@ -34,4 +34,9 @@ public class Timer
         isTimerRunning = false;
         timeLeft = timerDuration;
     }
+
+    public float GetProgressValue()
+    {
+        return (timerDuration - timeLeft) / timerDuration;
+    }
 }
