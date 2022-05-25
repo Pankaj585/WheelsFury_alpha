@@ -19,6 +19,7 @@ public class ItemHandler : MonoBehaviour
         playerID = transform.root.GetComponent<PlayerID>();
         pv = GetComponent<PhotonView>();
         gameHandler = FindObjectOfType<GameHandler>();
+        orbSpawner.AddMyReference(GetComponent<PlayerID>());
     }
 
     public void TryEquipItemFromOrb(int orbIndex)
@@ -67,6 +68,8 @@ public class ItemHandler : MonoBehaviour
     {
         foreach (WeaponLauncher laucher in weaponLaunchers)
             laucher.Deactivate();
+
+        orbSpawner.RemoveMyReference(GetComponent<PlayerID>().ID);
     }
 
     public void UnequipWeapon()
@@ -80,4 +83,5 @@ public class ItemHandler : MonoBehaviour
             gameHandler.SetWeapon(weaponInfo);
         }
     }
+
 }

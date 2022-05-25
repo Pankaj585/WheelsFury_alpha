@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-public class OrbSpawner : MonoBehaviour
+public class OrbSpawner : MonoBehaviourPunCallbacks
 {
     [SerializeField] WeaponOrb[] weaponOrbs;
     [SerializeField] WeaponInfo[] weapons;
     PhotonView PV;
-    PlayerID[] ids;
+    List<PlayerID> ids = new List<PlayerID>();
     Information syncInfo;
     private void Awake()
     {        
@@ -81,10 +81,10 @@ public class OrbSpawner : MonoBehaviour
             
             ItemHandler itemHandler = null;
 
-            if (ids == null || ids.Length != PhotonNetwork.CurrentRoom.PlayerCount)
-                ids = FindObjectsOfType<PlayerID>();
+           /* if (ids == null || ids.Length != PhotonNetwork.CurrentRoom.PlayerCount)
+                ids = FindObjectsOfType<PlayerID>();*/
 
-            for (int i = 0; i < ids.Length; i++)
+            for (int i = 0; i < ids.Count; i++)
             {
                 if (ids[i].ID == playerID)
                 {
@@ -109,6 +109,23 @@ public class OrbSpawner : MonoBehaviour
         weaponOrbs[orbIndex].SetWeapon(weapons[weaponIndex]);
 
         PV.RPC("SyncOrbs", RpcTarget.Others, syncInfo.weaponIndices, syncInfo.orbsAvailability);
+    }
+
+    public void AddMyReference(PlayerID playerID)
+    {
+        ids.Add(playerID);
+    }
+
+    public void RemoveMyReference(int playerID)
+    {
+        for(int i = 0; i < ids.Count; i++)
+        {
+            if(ids[i].ID == playerID)
+            {
+                ids.RemoveAt(i);
+                break;
+            }
+        }
     }
     private class Information
     {
