@@ -46,8 +46,8 @@ public class WeaponOrb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.transform.root.GetComponent<PlayerReference>()?.playerRoot.GetComponent<ItemHandler>()?.TryEquipItemFromOrb(orbIndex);
-        Debug.Log("triggered");
+        other.transform.root.GetComponent<PlayerReference>()?.itemHandler.TryEquipItemFromOrb(orbIndex);
+        //Debug.Log("triggered");
     }
 
     IEnumerator Wait()

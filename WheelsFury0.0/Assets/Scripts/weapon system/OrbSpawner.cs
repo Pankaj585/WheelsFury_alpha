@@ -7,7 +7,8 @@ public class OrbSpawner : MonoBehaviourPunCallbacks
     [SerializeField] WeaponOrb[] weaponOrbs;
     [SerializeField] WeaponInfo[] weapons;
     PhotonView PV;
-    List<PlayerID> ids = new List<PlayerID>();
+    //List<PlayerID> ids = new List<PlayerID>();
+    Dictionary<int, ItemHandler> itemHandlers = new Dictionary<int, ItemHandler>();
     Information syncInfo;
     private void Awake()
     {        
@@ -49,9 +50,11 @@ public class OrbSpawner : MonoBehaviourPunCallbacks
         {
             syncInfo.weaponIndices[i] = weaponIndices[i];
             syncInfo.orbsAvailability[i] = orbsAvailability[i];
+            weaponOrbs[i].SetWeapon(weapons[syncInfo.weaponIndices[i]]);
+            if (!syncInfo.orbsAvailability[i]) { weaponOrbs[i].Disable(); }
         }
 
-        ConfigureOrbs();
+        //ConfigureOrbs();
     }
 
     void ConfigureOrbs()
@@ -65,7 +68,7 @@ public class OrbSpawner : MonoBehaviourPunCallbacks
 
     public void RequestWeapon(int orbIndex, int playerID)
     {
-        Debug.Log("Request received");
+        //Debug.Log("Request received");
         PV.RPC("HandleRequest", RpcTarget.All, orbIndex, playerID);
     }
 
@@ -75,14 +78,14 @@ public class OrbSpawner : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("Request recieved by master");          
+            //Debug.Log("Request recieved by master");          
             if (!weaponOrbs[orbIndex].IsOrbAvailable)
                 return;
             
-            ItemHandler itemHandler = null;
+           /* ItemHandler itemHandler = null;
 
-           /* if (ids == null || ids.Length != PhotonNetwork.CurrentRoom.PlayerCount)
-                ids = FindObjectsOfType<PlayerID>();*/
+           *//* if (ids == null || ids.Length != PhotonNetwork.CurrentRoom.PlayerCount)
+                ids = FindObjectsOfType<PlayerID>();*//*
 
             for (int i = 0; i < ids.Count; i++)
             {
@@ -91,9 +94,9 @@ public class OrbSpawner : MonoBehaviourPunCallbacks
                     itemHandler = ids[i].GetComponent<ItemHandler>();
                     break;
                 }
-            } 
-
-            itemHandler.EquipItem(weaponOrbs[orbIndex].weaponInfo);
+            } */
+            
+            itemHandlers[playerID].EquipItem(weaponOrbs[orbIndex].weaponInfo);
             syncInfo.orbsAvailability[orbIndex] = false;
             weaponOrbs[orbIndex].Disable();
             PV.RPC("SyncOrbs", RpcTarget.Others, syncInfo.weaponIndices, syncInfo.orbsAvailability);
@@ -113,19 +116,22 @@ public class OrbSpawner : MonoBehaviourPunCallbacks
 
     public void AddMyReference(PlayerID playerID)
     {
-        ids.Add(playerID);
+       // ids.Add(playerID);
+        itemHandlers.Add(playerID.ID, playerID.GetComponent<ItemHandler>());
     }
 
     public void RemoveMyReference(int playerID)
     {
-        for(int i = 0; i < ids.Count; i++)
+       /* for(int i = 0; i < ids.Count; i++)
         {
             if(ids[i].ID == playerID)
             {
                 ids.RemoveAt(i);
                 break;
             }
-        }
+        }*/
+
+        itemHandlers.Remove(playerID);
     }
     private class Information
     {

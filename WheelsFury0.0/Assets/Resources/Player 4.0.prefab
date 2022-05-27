@@ -1159,6 +1159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRoot: {fileID: 7092365355468339481}
+  playerID: {fileID: 504668937615987167}
+  itemHandler: {fileID: 6014008775941819653}
 --- !u!1 &3876874370490706051
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRoot: {fileID: 7092365355468339481}
+  playerID: {fileID: 504668937615987167}
+  itemHandler: {fileID: 6014008775941819653}
 --- !u!1 &7105918498874496073
 GameObject:
   m_ObjectHideFlags: 0

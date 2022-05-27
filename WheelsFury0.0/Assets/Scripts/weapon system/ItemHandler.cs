@@ -19,12 +19,12 @@ public class ItemHandler : MonoBehaviour
         playerID = transform.root.GetComponent<PlayerID>();
         pv = GetComponent<PhotonView>();
         gameHandler = FindObjectOfType<GameHandler>();
-        orbSpawner.AddMyReference(GetComponent<PlayerID>());
+        //orbSpawner.AddMyReference(GetComponent<PlayerID>());
     }
 
     public void TryEquipItemFromOrb(int orbIndex)
     {
-        Debug.Log("Trying to equip");
+        //Debug.Log("Trying to equip");
        orbSpawner.RequestWeapon(orbIndex, playerID.ID);        
     }
 
@@ -34,10 +34,14 @@ public class ItemHandler : MonoBehaviour
     }
 
     void HandleWeaponEquip(WeaponInfo info)
-    {
+    {        
+        if(weaponInfo != null)
+            weaponLaunchers[weaponInfo.itemIndex].Deactivate();
+
         this.weaponInfo = info;
         currentAmmo = weaponInfo.maxAmmo;
-        SetWeaponLauncher();
+        weaponLaunchers[weaponInfo.itemIndex].Activate();
+
         if (pv.IsMine)
         {
             gameHandler.SetWeapon(this.weaponInfo);
@@ -56,13 +60,6 @@ public class ItemHandler : MonoBehaviour
         }
     } 
 
-    void SetWeaponLauncher()
-    {
-        foreach (WeaponLauncher laucher in weaponLaunchers)
-            laucher.Deactivate();
-
-        weaponLaunchers[weaponInfo.itemIndex].Activate();
-    }
 
     private void OnDisable()
     {

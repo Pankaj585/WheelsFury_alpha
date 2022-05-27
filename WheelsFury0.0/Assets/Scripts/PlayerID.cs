@@ -4,16 +4,17 @@ using UnityEngine;
 using Photon.Pun;
 public class PlayerID : MonoBehaviour
 {
-    PhotonView PV; 
+    PhotonView PV;
+    OrbSpawner orbSpawner;
     public int ID { get; private set; }
 
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+        orbSpawner = FindObjectOfType<OrbSpawner>();
     }
     public void SetID(int ID)
     {
-        this.ID = ID;
         PV.RPC("SyncID", RpcTarget.All, (object)ID);
     }
 
@@ -21,5 +22,6 @@ public class PlayerID : MonoBehaviour
     void SyncID(object ID)
     {
         this.ID = (int)ID;
+        orbSpawner.AddMyReference(this);
     }
 }
