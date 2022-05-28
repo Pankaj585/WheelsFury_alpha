@@ -17,6 +17,8 @@ public class GameUIHandler : MonoBehaviour
     [SerializeField] GameObject shockerImage;
 
     GameHandler gameHandler;
+    Dictionary<int, GameObject> weaponDisplayImages = new Dictionary<int, GameObject>();
+    GameObject currentActiveWeaponDisplayImage;
     // Start is called before the first frame update
     void Awake()
     {
@@ -24,6 +26,10 @@ public class GameUIHandler : MonoBehaviour
         optionsMenu.SetActive(false);
         equippedWeaponOverlay.SetActive(false);
         gameHandler = FindObjectOfType<GameHandler>();
+        weaponDisplayImages.Add(0, rocketLauncherImage);
+        weaponDisplayImages.Add(1, machineGunImage);
+        weaponDisplayImages.Add(2, mineImage);
+        weaponDisplayImages.Add(3, shockerImage);
     }
 
     public void ShowOptions()
@@ -55,25 +61,34 @@ public class GameUIHandler : MonoBehaviour
         if (!equippedWeaponOverlay.activeSelf)
             equippedWeaponOverlay.SetActive(true);
 
-        rocketLauncherImage.SetActive(false);
+        currentActiveWeaponDisplayImage?.SetActive(false);
+
+       /* rocketLauncherImage.SetActive(false);
         machineGunImage.SetActive(false);
         mineImage.SetActive(false);
-        shockerImage.SetActive(false);
+        shockerImage.SetActive(false);*/
 
         ammoText.text = info.maxAmmo.ToString();
 
-        switch (info.itemIndex)
+        currentActiveWeaponDisplayImage = weaponDisplayImages[info.itemIndex];
+        currentActiveWeaponDisplayImage.SetActive(true);
+
+        /*switch (info.itemIndex)
         {
             case 0: rocketLauncherImage.SetActive(true);
+                currentActiveWeaponDisplayImage = rocketLauncherImage;
                 break;
             case 1: machineGunImage.SetActive(true);
+                currentActiveWeaponDisplayImage = machineGunImage;
                 break;
             case 2: mineImage.SetActive(true);
+                currentActiveWeaponDisplayImage = mineImage;
                 break;
             case 3: shockerImage.SetActive(true);
+                currentActiveWeaponDisplayImage = shockerImage;
                 break;
             default: break;
-        }
+        }*/
     }
 
     public void UpdateAmmoUI(int ammo)
