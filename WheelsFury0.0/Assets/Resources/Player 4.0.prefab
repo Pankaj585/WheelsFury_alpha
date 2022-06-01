@@ -1915,9 +1915,9 @@ MonoBehaviour:
   carRB: {fileID: 5452700975820383887}
   maxSpeed: 300
   forwardAccel: 8
-  reverseAccel: 3
-  turnStrength: 350
-  driftTurnStrength: 720
+  reverseAccel: 5
+  turnStrength: 400
+  driftTurnStrength: 750
   grounded: 0
   groundRayPoint: {fileID: 947865343950074981}
   whatIsGround:
