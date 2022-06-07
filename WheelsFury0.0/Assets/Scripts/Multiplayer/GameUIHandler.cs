@@ -23,13 +23,17 @@ public class GameUIHandler : MonoBehaviour
     void Awake()
     {
         playerOverlay.SetActive(true);
-        optionsMenu.SetActive(false);
-        equippedWeaponOverlay.SetActive(false);
         gameHandler = FindObjectOfType<GameHandler>();
         weaponDisplayImages.Add(0, rocketLauncherImage);
         weaponDisplayImages.Add(1, machineGunImage);
         weaponDisplayImages.Add(2, mineImage);
         weaponDisplayImages.Add(3, shockerImage);
+    }
+
+    private void Start()
+    {
+        optionsMenu.SetActive(false);
+        equippedWeaponOverlay.SetActive(false);
     }
 
     public void ShowOptions()
