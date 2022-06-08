@@ -57,6 +57,15 @@ public class OrbSpawner : MonoBehaviourPunCallbacks
         //ConfigureOrbs();
     }
 
+    [PunRPC]
+    void SyncOrb(int orbIndex, int weaponIndex, bool orbAvailability)
+    {
+        syncInfo.weaponIndices[orbIndex] = weaponIndex;
+        syncInfo.orbsAvailability[orbIndex] = orbAvailability;
+        weaponOrbs[orbIndex].SetWeapon(weapons[syncInfo.weaponIndices[orbIndex]]);
+        if (!syncInfo.orbsAvailability[orbIndex]) { weaponOrbs[orbIndex].Disable(); }
+    }
+
     void ConfigureOrbs()
     {
         for(int i = 0; i < syncInfo.Length; i++)
@@ -99,7 +108,8 @@ public class OrbSpawner : MonoBehaviourPunCallbacks
             itemHandlers[playerID].EquipItem(weaponOrbs[orbIndex].weaponInfo);
             syncInfo.orbsAvailability[orbIndex] = false;
             weaponOrbs[orbIndex].Disable();
-            PV.RPC("SyncOrbs", RpcTarget.Others, syncInfo.weaponIndices, syncInfo.orbsAvailability);
+            //PV.RPC("SyncOrbs", RpcTarget.Others, syncInfo.weaponIndices, syncInfo.orbsAvailability);
+            PV.RPC("SyncOrb", RpcTarget.Others, orbIndex, syncInfo.weaponIndices[orbIndex], syncInfo.orbsAvailability[orbIndex]);
         }
     }
 
@@ -111,7 +121,8 @@ public class OrbSpawner : MonoBehaviourPunCallbacks
         syncInfo.orbsAvailability[orbIndex] = true;
         weaponOrbs[orbIndex].SetWeapon(weapons[weaponIndex]);
 
-        PV.RPC("SyncOrbs", RpcTarget.Others, syncInfo.weaponIndices, syncInfo.orbsAvailability);
+        //PV.RPC("SyncOrbs", RpcTarget.Others, syncInfo.weaponIndices, syncInfo.orbsAvailability);
+        PV.RPC("SyncOrb", RpcTarget.Others, orbIndex, syncInfo.weaponIndices[orbIndex], syncInfo.orbsAvailability[orbIndex]);
     }
 
     public void AddMyReference(PlayerID playerID)
