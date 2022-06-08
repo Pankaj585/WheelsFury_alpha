@@ -56,6 +56,7 @@ public class ItemHandler : MonoBehaviour
             if(info.itemIndex == weaponID)
             {
                 HandleWeaponEquip(info);
+                break;
             }
         }
     } 
