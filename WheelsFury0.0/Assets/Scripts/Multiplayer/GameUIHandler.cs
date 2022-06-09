@@ -9,16 +9,16 @@ public class GameUIHandler : MonoBehaviour
     [SerializeField] GameObject optionsMenu;
 
     [Header("Equipped Weapon Display")]
-    [SerializeField] GameObject equippedWeaponOverlay;
+    [SerializeField] Canvas equippedWeaponOverlayCanvas;
     [SerializeField] TextMeshProUGUI ammoText;
-    [SerializeField] GameObject rocketLauncherImage;
-    [SerializeField] GameObject machineGunImage;
-    [SerializeField] GameObject mineImage;
-    [SerializeField] GameObject shockerImage;
+    [SerializeField] Image rocketLauncherImage;
+    [SerializeField] Image machineGunImage;
+    [SerializeField] Image mineImage;
+    [SerializeField] Image shockerImage;
 
     GameHandler gameHandler;
-    Dictionary<int, GameObject> weaponDisplayImages = new Dictionary<int, GameObject>();
-    GameObject currentActiveWeaponDisplayImage;
+    Dictionary<int, Image> weaponDisplayImages = new Dictionary<int, Image>();
+    Image currentActiveWeaponDisplayImage;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,7 +33,11 @@ public class GameUIHandler : MonoBehaviour
     private void Start()
     {
         optionsMenu.SetActive(false);
-        equippedWeaponOverlay.SetActive(false);
+        equippedWeaponOverlayCanvas.enabled = false;
+        for(int i = 0; i < weaponDisplayImages.Count; i++)
+        {
+            weaponDisplayImages[i].enabled = false;
+        }
     }
 
     public void ShowOptions()
@@ -58,14 +62,15 @@ public class GameUIHandler : MonoBehaviour
     {
         if(info == null)
         {
-            equippedWeaponOverlay.SetActive(false);
+            equippedWeaponOverlayCanvas.enabled = false;
             return;
         }
 
-        if (!equippedWeaponOverlay.activeSelf)
-            equippedWeaponOverlay.SetActive(true);
+        if (!equippedWeaponOverlayCanvas.enabled)
+            equippedWeaponOverlayCanvas.enabled = true;
 
-        currentActiveWeaponDisplayImage?.SetActive(false);
+        if(currentActiveWeaponDisplayImage!=null)
+            currentActiveWeaponDisplayImage.enabled = false;
 
        /* rocketLauncherImage.SetActive(false);
         machineGunImage.SetActive(false);
@@ -75,7 +80,7 @@ public class GameUIHandler : MonoBehaviour
         ammoText.text = info.maxAmmo.ToString();
 
         currentActiveWeaponDisplayImage = weaponDisplayImages[info.itemIndex];
-        currentActiveWeaponDisplayImage.SetActive(true);
+        currentActiveWeaponDisplayImage.enabled = true;
 
         /*switch (info.itemIndex)
         {
@@ -99,7 +104,7 @@ public class GameUIHandler : MonoBehaviour
     {
         if(ammo == 0)
         {
-            equippedWeaponOverlay.SetActive(false);
+            equippedWeaponOverlayCanvas.enabled = false;
             return;
         }
 
