@@ -70,7 +70,8 @@ public class AndroidController : MonoBehaviourPunCallbacks
         //drift
         if (inputHandler.drift && grounded)
         {
-            turnStrength = driftTurnStrength;
+            turnStrength = Mathf.Lerp(turnInput, driftTurnStrength, 2);
+            theRB.AddForce(-transform.forward * (Time.deltaTime * 2));
 
             foreach (var trail in trails)
             {
