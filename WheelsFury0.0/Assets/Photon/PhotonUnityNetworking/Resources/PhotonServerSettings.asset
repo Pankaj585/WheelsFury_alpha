@@ -51,6 +51,8 @@ MonoBehaviour:
   - RPC_ReturnMine
   - UseShocker
   - SyncOrb
+  - UnequipWeaponRPC
+  - SetPositionRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

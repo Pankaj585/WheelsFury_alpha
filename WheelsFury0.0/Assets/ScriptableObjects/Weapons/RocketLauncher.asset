@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Rocket Launcher
   itemIndex: 0
   maxAmmo: 3
-  damage: 10
+  damage: 100
   fireRate: 1
   isContinuousFire: 0
   hasAmmoPrefab: 1

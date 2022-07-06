@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Shocker
   itemIndex: 3
   maxAmmo: 3
-  damage: 10
+  damage: 50
   fireRate: 1
   isContinuousFire: 0
   hasAmmoPrefab: 1

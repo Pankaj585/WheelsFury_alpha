@@ -9,14 +9,18 @@ public class Status : MonoBehaviour
     int currentHealth;
     bool isDead;
     PhotonView pv;
-
+    GameHandler gameHandler;
+    PlayerID playerId;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        gameHandler = FindObjectOfType<GameHandler>();
+        playerId = GetComponent<PlayerID>();
     }
     private void Start()
     {
         currentHealth = maxHealth;
+        gameHandler.UpdateHealthBar(1);
     }
 
     public void Damage(int damage)
@@ -32,9 +36,15 @@ public class Status : MonoBehaviour
         {
             currentHealth = 0;
             isDead = true;
+            gameHandler.Respawn(playerId);
         }
 
+        if(pv.IsMine)
+            gameHandler.UpdateHealthBar((float)currentHealth / maxHealth);
+
         pv.RPC("SyncHealth", RpcTarget.Others, currentHealth);
+
+        
     }
 
     [PunRPC]
@@ -43,5 +53,19 @@ public class Status : MonoBehaviour
         this.currentHealth = currentHealth;
         if (this.currentHealth == 0)
             isDead = true;
+    }
+
+    public void ResetHealth()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
+        currentHealth = maxHealth;
+        isDead = false;
+
+        if(pv.IsMine)
+            gameHandler.UpdateHealthBar(1);
+
+        pv.RPC("SyncHealth", RpcTarget.Others, currentHealth);
     }
 }

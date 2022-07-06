@@ -6,6 +6,7 @@ using Photon.Pun;
 public class GameHandler : MonoBehaviourPunCallbacks
 {
     GameUIHandler UIHandler;
+    [SerializeField] Transform[] spawnPoints;
     byte currentCanvas = 0;
     private void Awake()
     {
@@ -53,5 +54,25 @@ public class GameHandler : MonoBehaviourPunCallbacks
     public void UpdateAmmoUI(int ammo)
     {
         UIHandler.UpdateAmmoUI(ammo);
+    }
+
+    public void UpdateHealthBar(float healthPercent)
+    {
+        UIHandler.UpdateHealthBar(healthPercent);
+    }
+
+    public void Respawn(PlayerID playerID)
+    {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
+        Status playerStatus = playerID.GetComponent<Status>();
+        ItemHandler playerItemHandler = playerID.GetComponent<ItemHandler>();
+
+        playerItemHandler.UnequipWeaponOverNetwork();
+        playerStatus.ResetHealth();
+
+        int randomIndex = Random.Range(0, spawnPoints.Length);
+        playerID.GetComponent<AndroidController>().Respawn(spawnPoints[randomIndex].position);
     }
 }

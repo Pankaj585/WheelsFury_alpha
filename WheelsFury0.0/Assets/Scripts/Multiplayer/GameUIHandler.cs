@@ -16,6 +16,9 @@ public class GameUIHandler : MonoBehaviour
     [SerializeField] Image mineImage;
     [SerializeField] Image shockerImage;
 
+    [Header("Health Display")]
+    [SerializeField] RectTransform healthFill;
+
     GameHandler gameHandler;
     Dictionary<int, Image> weaponDisplayImages = new Dictionary<int, Image>();
     Image currentActiveWeaponDisplayImage;
@@ -109,5 +112,13 @@ public class GameUIHandler : MonoBehaviour
         }
 
         ammoText.text = ammo.ToString();
+    }
+
+    public void UpdateHealthBar(float healthPercent)
+    {
+        if (healthPercent < 0 || healthPercent > 100)
+            return;
+
+        healthFill.localScale = new Vector3(healthPercent, 1, 1);
     }
 }

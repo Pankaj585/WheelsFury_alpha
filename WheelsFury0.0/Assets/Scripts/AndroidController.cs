@@ -165,4 +165,20 @@ public class AndroidController : MonoBehaviourPunCallbacks
 
        carRB.MoveRotation(transform.rotation);
     }
+
+    public void Respawn(Vector3 position)
+    {
+        photonView.RPC("SetPositionRPC", RpcTarget.All, position);
+    }
+
+    [PunRPC]
+    void SetPositionRPC(Vector3 position)
+    {
+        if (!photonView.IsMine)
+            return;
+
+        theRB.transform.position = position;
+        carRB.transform.position = position;
+        transform.position = position;
+    }
 }

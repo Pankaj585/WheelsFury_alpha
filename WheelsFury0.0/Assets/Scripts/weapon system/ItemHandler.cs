@@ -73,7 +73,8 @@ public class ItemHandler : MonoBehaviour
     public void UnequipWeapon()
     {
         currentAmmo = 0;
-        weaponLaunchers[weaponInfo.itemIndex].Deactivate();
+        if(weaponInfo!=null)
+            weaponLaunchers[weaponInfo.itemIndex].Deactivate();
         weaponInfo = null;
 
         if (pv.IsMine)
@@ -82,4 +83,14 @@ public class ItemHandler : MonoBehaviour
         }
     }
 
+    public void UnequipWeaponOverNetwork()
+    {
+        pv.RPC("UnequipWeaponRPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void UnequipWeaponRPC()
+    {
+        UnequipWeapon();
+    }
 }
