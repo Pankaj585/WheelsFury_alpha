@@ -33,7 +33,11 @@ public class InputHandler : MonoBehaviour
         TakeKeyboardInput();
         //end
 
-        if (accButtonPressed) { if (vertical < 1) { vertical += Time.deltaTime; } }
+        if (accButtonPressed) 
+        {
+            if (drift) { if (vertical > 0f) vertical -= Time.deltaTime/2f; }
+            else { if (vertical < 1) { vertical += Time.deltaTime; } }
+        }
         if (revButtonPressed) { if (vertical > -1) { vertical -= Time.deltaTime; } }
         if (turnLeftButtonPressed) { if (horizontal > -1) { horizontal -= Time.deltaTime * 5f; } }
         if (turnRightButtonPressed) { if (horizontal < 1) { horizontal += Time.deltaTime * 5f; } }

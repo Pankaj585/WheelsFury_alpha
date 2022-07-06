@@ -13,8 +13,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
     private float speedInput;
 
     public float turnStrength = 180f;
-    public float driftTurnStrength = 250f;
-    private float turnInput;
+    public float driftTurnStrength, driftStrength;
 
     [SerializeField] bool grounded;
 
@@ -32,7 +31,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
 
     public TrailRenderer[] trails;
 
-    public AudioSource engineSound;
+    public AudioSource engineSound, tireSqueal;
 
     private void Awake()
     {
@@ -63,15 +62,16 @@ public class AndroidController : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-
         if (!photonView.IsMine)
             return;
 
         //drift
         if (inputHandler.drift && grounded)
         {
-            turnStrength = Mathf.Lerp(turnInput, driftTurnStrength, 2);
-            theRB.AddForce(-transform.forward * (Time.deltaTime * 2));
+            turnStrength = Mathf.MoveTowards(turnStrength, driftTurnStrength, driftStrength * 100 * Time.deltaTime);
+
+            //if (engineSound.isPlaying) { engineSound.Stop(); ; }
+            if (!tireSqueal.isPlaying) { tireSqueal.Play(); }
 
             foreach (var trail in trails)
             {
@@ -80,17 +80,18 @@ public class AndroidController : MonoBehaviourPunCallbacks
         }
         else
         {
-            turnStrength = 360f;
+            turnStrength = 400f;
             foreach (var trail in trails)
             {
                 trail.emitting = false;
             }
+
+            if (tireSqueal.isPlaying) { tireSqueal.Stop(); }
+            //if(!engineSound.isPlaying) { engineSound.Play(); }
         }
 
-        if (engineSound != null)
-        {
-            engineSound.pitch = 1f + ((theRB.velocity.magnitude / maxSpeed) * 1.5f);
-        }
+        if (engineSound != null) { engineSound.pitch = 1f + ((theRB.velocity.magnitude / maxSpeed) * 2f); }
+        if(tireSqueal!= null) { tireSqueal.pitch = 1f + ((theRB.velocity.magnitude / maxSpeed) * 2f); }
     }
 
     private void FixedUpdate()
