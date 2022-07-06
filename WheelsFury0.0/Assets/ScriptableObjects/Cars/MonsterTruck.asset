@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b66c0c4902afb741a6cce8dbf37c765, type: 3}
-  m_Name: New Car
+  m_Name: MonsterTruck
   m_EditorClassIdentifier: 
-  carIndex: 0
+  carIndex: 3
   carName: 
-  carModel: {fileID: 6386622269700856688, guid: 5757769a33737a641b334bb7db67214b, type: 3}
+  carModel: {fileID: 1459003920491603780, guid: 2186bb3971154fb4eb2d08c007dd6bcc, type: 3}
   speed: 7
   acceleration: 6
   handling: 8

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b66c0c4902afb741a6cce8dbf37c765, type: 3}
-  m_Name: New Car 3
+  m_Name: Buggy
   m_EditorClassIdentifier: 
-  carIndex: 3
+  carIndex: 1
   carName: 
-  carModel: {fileID: 2932302324016255219, guid: d9c0fbe2464edcb4fbc40e0da15fa763, type: 3}
+  carModel: {fileID: 2811924844589408544, guid: 6d7225b6129cd2047b3decac95c88fa1, type: 3}
   speed: 7
   acceleration: 6
   handling: 8
