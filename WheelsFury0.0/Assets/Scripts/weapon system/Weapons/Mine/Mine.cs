@@ -14,6 +14,7 @@ public class Mine : Ammo
     PoolManager poolManager;
     MineLauncher mineLauncher;
     PoolInstance poolInstance;
+    PlayerID id;
     private void Awake()
     {
         /*rb = GetComponent<Rigidbody>();
@@ -47,6 +48,7 @@ public class Mine : Ammo
     public void SetMineLauncherReference(MineLauncher launcher)
     {
         mineLauncher = launcher;
+        id = mineLauncher.transform.root.GetComponent<PlayerID>();
     }
 
     public void SetPoolInstanceReference(PoolInstance instance)
@@ -58,7 +60,7 @@ public class Mine : Ammo
     {
         Debug.Log("triggered mine");
         GameObject player = other.GetComponent<PlayerReference>()?.playerRoot;
-        if (player == null)
+        if (player == null || player.GetComponent<PlayerID>() == id)
             return;
         Debug.Log("Player found");
         PoolInstance instance = poolManager.GetInstance(detonateEffect);

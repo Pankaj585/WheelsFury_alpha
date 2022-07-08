@@ -11,6 +11,8 @@ public class MachineGun : WeaponLauncher
     [SerializeField] LayerMask layerMask;
     GameHandler gameHandler;
     bool isFiring;
+    PlayerID myID;
+    Camera myCam;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -18,6 +20,8 @@ public class MachineGun : WeaponLauncher
         itemHandler = transform.root.GetComponent<ItemHandler>();
         poolManager = FindObjectOfType<PoolManager>();
         gameHandler = FindObjectOfType<GameHandler>();
+        myID = transform.root.GetComponent<PlayerID>();
+        myCam = transform.root.GetComponentInChildren<Camera>(true);
     }
 
     public override void OnFireButtonDown()
@@ -34,7 +38,23 @@ public class MachineGun : WeaponLauncher
     {
         while (isFiring)
         {
-            pv.RPC("Fire", RpcTarget.All);
+            PlayerID[] ids = FindObjectsOfType<PlayerID>();
+            Vector3 targetPos = Vector3.negativeInfinity;
+            foreach (PlayerID id in ids)
+            {
+                if (id == myID)
+                    continue;
+
+                Vector3 vPoint = myCam.WorldToViewportPoint(id.transform.position);
+                if(vPoint.x > 0 && vPoint.x < 1 && vPoint.y > 0 && vPoint.y < 1 && vPoint.z > 0 && vPoint.z < 60)
+                {
+                    targetPos = id.transform.position;                   
+                    break;
+                }
+            }
+            
+
+            pv.RPC("Fire", RpcTarget.All, targetPos);
             yield return new WaitForSeconds(1 / weaponInfo.fireRate);
         }
     }
@@ -57,9 +77,18 @@ public class MachineGun : WeaponLauncher
     }
 
     [PunRPC]
-    void Fire()
+    void Fire(Vector3 targetPos)
     {
-        if(Physics.Raycast(launchPoint.position, launchPoint.forward, out RaycastHit hitInfo, layerMask))
+        Ray ray;
+        if(targetPos != Vector3.negativeInfinity)
+        {
+            ray = new Ray(launchPoint.position, (targetPos - launchPoint.position).normalized);
+        } else
+        {
+            ray = new Ray(launchPoint.position, launchPoint.forward);
+        }
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, layerMask))
         {
             PoolInstance instance = poolManager.GetInstance(impactEffect);
             instance.instance.transform.position = hitInfo.point;

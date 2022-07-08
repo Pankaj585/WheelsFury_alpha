@@ -7,7 +7,7 @@ public class ShockerLauncher : WeaponLauncher
     [SerializeField] ShockerEffect shockerEffect;
     GameHandler gameHandler;
     [SerializeField] LayerMask layerMask;
-    [SerializeField] float shockerDamageRadius = 10f;
+    [SerializeField] float shockerDamageRadius = 50f;
     PlayerID playerID;
     private void Awake()
     {
