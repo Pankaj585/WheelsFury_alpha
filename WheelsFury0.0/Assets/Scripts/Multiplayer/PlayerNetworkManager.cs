@@ -5,7 +5,7 @@ using Photon.Pun;
 public class PlayerNetworkManager : MonoBehaviourPunCallbacks
 {
 
-    [SerializeField] GameObject cameraObject;
+    public GameObject cameraObject;
 
     private void Awake()
     {
