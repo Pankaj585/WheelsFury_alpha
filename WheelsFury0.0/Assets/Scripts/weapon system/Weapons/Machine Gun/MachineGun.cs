@@ -9,6 +9,7 @@ public class MachineGun : WeaponLauncher
     [SerializeField] Transform launchPoint;
     [SerializeField] MachineGunImpactEffect impactEffect;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] ParticleSystem bulletTracerEffect;
     GameHandler gameHandler;
     bool isFiring;
     PlayerID myID;
@@ -64,6 +65,7 @@ public class MachineGun : WeaponLauncher
         if (!isFiring)
         {
             isFiring = true;
+            pv.RPC("StartStopBulletTracerEffect", RpcTarget.All, true);
             StartCoroutine(FiringRoutine());
         }        
     }
@@ -73,6 +75,7 @@ public class MachineGun : WeaponLauncher
         if (isFiring)
         {
             isFiring = false;
+            pv.RPC("StartStopBulletTracerEffect", RpcTarget.All, false);
         }
     }
 
@@ -80,12 +83,15 @@ public class MachineGun : WeaponLauncher
     void Fire(Vector3 targetPos)
     {
         Ray ray;
-        if(targetPos != Vector3.negativeInfinity)
+        
+        if(!targetPos.Equals(Vector3.negativeInfinity))
         {
             ray = new Ray(launchPoint.position, (targetPos - launchPoint.position).normalized);
+            bulletTracerEffect.transform.forward = ray.direction;
         } else
         {
             ray = new Ray(launchPoint.position, launchPoint.forward);
+            bulletTracerEffect.transform.forward = launchPoint.forward;
         }
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, layerMask))
@@ -109,6 +115,7 @@ public class MachineGun : WeaponLauncher
             {
                 itemHandler.UnequipWeapon();
                 isFiring = false;
+                StartStopBulletTracerEffect(false);
             }
 
             if (PhotonNetwork.IsMasterClient)
@@ -125,6 +132,14 @@ public class MachineGun : WeaponLauncher
         }
     }
 
+    [PunRPC]
+    void StartStopBulletTracerEffect(bool flag)
+    {
+        if (flag)
+            bulletTracerEffect.Play();
+        else
+            bulletTracerEffect.Stop();
+    }
     
     /* [SerializeField] GameObject bulletTracers;
      [SerializeField] GameObject muzzleFlash;

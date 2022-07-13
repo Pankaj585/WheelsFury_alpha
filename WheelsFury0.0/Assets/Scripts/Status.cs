@@ -25,9 +25,6 @@ public class Status : MonoBehaviour
 
     public void Damage(int damage)
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
         if (isDead)
             return;
 
@@ -39,10 +36,8 @@ public class Status : MonoBehaviour
             gameHandler.Respawn(playerId);
         }
 
-        if(pv.IsMine)
-            gameHandler.UpdateHealthBar((float)currentHealth / maxHealth);
 
-        pv.RPC("SyncHealth", RpcTarget.Others, currentHealth);
+        pv.RPC("SyncHealth", RpcTarget.All, currentHealth);
 
         
     }
@@ -53,6 +48,9 @@ public class Status : MonoBehaviour
         this.currentHealth = currentHealth;
         if (this.currentHealth == 0)
             isDead = true;
+
+        if (pv.IsMine)
+            gameHandler.UpdateHealthBar((float)currentHealth / maxHealth);
     }
 
     public void ResetHealth()
@@ -62,9 +60,6 @@ public class Status : MonoBehaviour
 
         currentHealth = maxHealth;
         isDead = false;
-
-        if(pv.IsMine)
-            gameHandler.UpdateHealthBar(1);
 
         pv.RPC("SyncHealth", RpcTarget.Others, currentHealth);
     }

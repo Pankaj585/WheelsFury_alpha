@@ -69,11 +69,8 @@ public class Mine : Ammo
         effect.SetPoolInstanceReference(instance);
         effect.gameObject.SetActive(true);
         effect.PlayEffect();
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.Log("damaging player");
-            player.GetComponent<Status>().Damage(weaponInfo.damage);
-            mineLauncher.ReturnMine(poolInstance);
-        }
+        Debug.Log("damaging player");
+        player.GetComponent<Status>().Damage(weaponInfo.damage);
+        mineLauncher.ReturnMine(poolInstance);
     }
 }
