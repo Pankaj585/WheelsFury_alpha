@@ -8,6 +8,7 @@ public class Status : MonoBehaviour
     const int maxHealth = 100;
     int currentHealth;
     bool isDead;
+    bool isInvincible;
     PhotonView pv;
     GameHandler gameHandler;
     PlayerID playerId;
@@ -25,7 +26,7 @@ public class Status : MonoBehaviour
 
     public void Damage(int damage)
     {
-        if (isDead)
+        if (isDead || isInvincible)
             return;
 
         currentHealth -= damage;
@@ -61,6 +62,20 @@ public class Status : MonoBehaviour
         currentHealth = maxHealth;
         isDead = false;
 
-        pv.RPC("SyncHealth", RpcTarget.Others, currentHealth);
+        pv.RPC("MakeInvincible", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    void MakeInvincible()
+    {
+        currentHealth = maxHealth;
+        isInvincible = true;      
+        StartCoroutine(InvincibilityCountdown(2f));  
+    }
+
+    IEnumerator InvincibilityCountdown(float seconds){
+
+        yield return new WaitForSeconds(seconds);
+        isInvincible = false;
     }
 }

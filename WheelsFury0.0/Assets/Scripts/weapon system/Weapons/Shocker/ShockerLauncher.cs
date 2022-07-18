@@ -71,7 +71,13 @@ public class ShockerLauncher : WeaponLauncher
             if (player == null || player.ID == playerID.ID)
                 continue;
 
-            player.GetComponent<Status>()?.Damage(weaponInfo.damage);
+            float distance = (player.transform.position - transform.position).magnitude;
+            int damage = 0;
+            if(distance <= shockerDamageRadius/3) damage = weaponInfo.damage;
+            else if(distance <= shockerDamageRadius/2) damage = weaponInfo.damage/2;
+            else damage = weaponInfo.damage/3;
+
+            player.GetComponent<Status>()?.Damage(damage);
         }
     }
 }
