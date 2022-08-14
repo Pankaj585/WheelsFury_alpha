@@ -6,7 +6,7 @@ public class ShockerEffect : Effect
 {
     PoolManager poolManager;
     PoolInstance poolInstance;
-    Vector3 maxScale = new Vector3(30, 2, 30);
+    Vector3 maxScale = new Vector3(90, 2, 90);
     Timer timer = new Timer(0.1f);
     private void Awake()
     {

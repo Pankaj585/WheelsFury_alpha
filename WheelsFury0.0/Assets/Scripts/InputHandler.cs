@@ -6,7 +6,7 @@ public class InputHandler : MonoBehaviour
 {
     public AndroidController androidController;
     public float vertical, horizontal;
-    [SerializeField] bool accButtonPressed, turnLeftButtonPressed, revButtonPressed, turnRightButtonPressed;
+    bool accButtonPressed, turnLeftButtonPressed, revButtonPressed, turnRightButtonPressed;
     public bool drift;
 
     //firing

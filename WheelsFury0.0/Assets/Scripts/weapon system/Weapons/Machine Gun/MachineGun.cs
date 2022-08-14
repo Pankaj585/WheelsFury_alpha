@@ -140,7 +140,8 @@ public class MachineGun : WeaponLauncher
         else
             bulletTracerEffect.Stop();
     }
-    
+
+
     /* [SerializeField] GameObject bulletTracers;
      [SerializeField] GameObject muzzleFlash;
 

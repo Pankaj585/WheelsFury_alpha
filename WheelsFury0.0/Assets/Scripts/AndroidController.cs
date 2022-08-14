@@ -12,7 +12,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
     public float forwardAccel = 8f, reverseAccel = 4f;
     private float speedInput;
 
-    public float turnStrength = 180f;
+    public float turnStrength = 700f;
     public float driftTurnStrength, driftStrength;
 
     [SerializeField] bool grounded;
@@ -80,7 +80,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
         }
         else
         {
-            turnStrength = 400f;
+            turnStrength = 700f;
             foreach (var trail in trails)
             {
                 trail.emitting = false;
@@ -160,7 +160,8 @@ public class AndroidController : MonoBehaviourPunCallbacks
         
         if (grounded && speedInput != 0)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Mathf.Sign(speedInput) * (theRB.velocity.magnitude / maxSpeed), 0f));
+            //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Mathf.Sign(speedInput) * (theRB.velocity.magnitude / maxSpeed), 0f));
+            transform.Rotate(Vector3.up * turnInput * (theRB.velocity.magnitude) * turnStrength * Time.deltaTime);
         }
 
        carRB.MoveRotation(transform.rotation);

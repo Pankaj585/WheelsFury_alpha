@@ -1219,7 +1219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4022293248446068718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.46, z: 1.65}
+  m_LocalPosition: {x: 0, y: 2.84, z: 1.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1068020713888032144}
@@ -1822,7 +1822,7 @@ MonoBehaviour:
   forwardAccel: 8
   reverseAccel: 5
   turnStrength: 400
-  driftTurnStrength: 800
+  driftTurnStrength: 1200
   driftStrength: 15
   grounded: 0
   groundRayPoint: {fileID: 947865343950074981}

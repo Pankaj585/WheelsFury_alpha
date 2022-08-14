@@ -8,6 +8,10 @@ public class RocketLauncher : WeaponLauncher
 {
     [SerializeField] Transform launchTransform;
     GameHandler gameHandler;
+    Transform targetEnemy;
+    Camera myCam;
+    PlayerID myID;
+
     private void Awake()
     {
         inputHandler = FindObjectOfType<InputHandler>();
@@ -15,6 +19,8 @@ public class RocketLauncher : WeaponLauncher
         poolManager = FindObjectOfType<PoolManager>();
         pv = GetComponent<PhotonView>();
         gameHandler = FindObjectOfType<GameHandler>();
+        myCam = transform.root.GetComponentInChildren<Camera>(true);
+        myID = transform.root.GetComponent<PlayerID>();
     }
 
     public override void OnFireButtonDown()
@@ -33,8 +39,25 @@ public class RocketLauncher : WeaponLauncher
         PoolInstance instance = poolManager.GetInstance(weaponInfo);
         instance.instance.SetActive(true);
         Rocket rocket = instance.instance.GetComponent<Rocket>();
+
+        PlayerID[] ids = FindObjectsOfType<PlayerID>();
+        targetEnemy = null;
+        foreach (PlayerID id in ids)
+        {
+            if (id == myID)
+                continue;
+
+            Vector3 vPoint = myCam.WorldToViewportPoint(id.transform.position);
+            if (vPoint.x > 0 && vPoint.x < 1 && vPoint.y > 0 && vPoint.y < 1 && vPoint.z > 0 && vPoint.z < 120)
+            {
+                targetEnemy = id.transform;
+                break;
+            }
+        }
+
         rocket.SetPoolInstanceReference(instance);
-        rocket.Launch(launchTransform);
+        if(targetEnemy == null) { print("nul"); };
+        rocket.Launch(launchTransform, targetEnemy);
 
         itemHandler.currentAmmo--;
 
@@ -47,8 +70,49 @@ public class RocketLauncher : WeaponLauncher
         if (itemHandler.currentAmmo <= 0)
             itemHandler.UnequipWeapon();
     }
+    private Transform FindTarget()
+    {
+        Transform target;
+        var planes = GeometryUtility.CalculateFrustumPlanes(myCam);
+        List<Transform> enemiesOnScreen = new List<Transform>();
+        PlayerID[] ids = FindObjectsOfType<PlayerID>();
+        foreach (var plane in planes)
+        {
+            foreach (var id in ids)
+            {
+                if (id == myID) continue;
 
-    
+                if (plane.GetDistanceToPoint(id.transform.position) < 0) { enemiesOnScreen.Add(id.transform); }
+            }
+        }
+        if (enemiesOnScreen != null)
+        {
+            target = FindClosestTarget(enemiesOnScreen);
+            return target;
+        }
+        else return null;
+    }
+    private Transform FindClosestTarget(List<Transform> transforms)
+    {
+        Transform closestTarget = null;
+        if (transforms == null)
+            return null;
+        else
+        {
+            float closestDistance = Mathf.Infinity;
+            foreach (Transform t in transforms)
+            {
+                float currentDistance = Vector3.Distance(myID.transform.position, t.transform.position);
+                if (currentDistance < closestDistance)
+                {
+                    closestDistance = currentDistance;
+                    closestTarget = t.transform;
+                }
+            }
+            return closestTarget;
+        }
+    }
+
     /*[SerializeField] GameObject rocketPrefab;
     [SerializeField] float propulsionForce = 35f;
     [SerializeField] float fireRate = 0.2f;
