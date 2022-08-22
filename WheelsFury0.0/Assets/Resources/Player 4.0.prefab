@@ -1822,7 +1822,7 @@ MonoBehaviour:
   forwardAccel: 8
   reverseAccel: 5
   turnStrength: 400
-  driftTurnStrength: 1200
+  driftTurnStrength: 3
   driftStrength: 15
   grounded: 0
   groundRayPoint: {fileID: 947865343950074981}

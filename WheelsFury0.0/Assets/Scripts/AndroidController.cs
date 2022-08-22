@@ -12,7 +12,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
     public float forwardAccel = 8f, reverseAccel = 4f;
     private float speedInput;
 
-    public float turnStrength = 700f;
+    public float turnStrength = 2f;
     public float driftTurnStrength, driftStrength;
 
     [SerializeField] bool grounded;
@@ -80,7 +80,7 @@ public class AndroidController : MonoBehaviourPunCallbacks
         }
         else
         {
-            turnStrength = 700f;
+            turnStrength = 2f;
             foreach (var trail in trails)
             {
                 trail.emitting = false;
